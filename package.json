@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "genAntlr": "./scripts/genAntlr.sh"
   },
   "dependencies": {
+    "pixi.js": "^7.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
