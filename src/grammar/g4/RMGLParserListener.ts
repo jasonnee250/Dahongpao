@@ -1,7 +1,7 @@
-// Generated from ./src/grammar/g4/RMGLParser.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./src/grammar/g4/RMGLParser.g4 by ANTLR 4.13.1
 
+import {ParseTreeListener} from "antlr4";
 
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 
 import { StatementContext } from "./RMGLParser";
 import { VariableNameContext } from "./RMGLParser";
@@ -15,7 +15,7 @@ import { PropertyDefineContext } from "./RMGLParser";
  * This interface defines a complete listener for a parse tree produced by
  * `RMGLParser`.
  */
-export interface RMGLParserListener extends ParseTreeListener {
+export default class RMGLParserListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by `RMGLParser.statement`.
 	 * @param ctx the parse tree
@@ -26,7 +26,6 @@ export interface RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitStatement?: (ctx: StatementContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `RMGLParser.variableName`.
 	 * @param ctx the parse tree
@@ -37,7 +36,6 @@ export interface RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitVariableName?: (ctx: VariableNameContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `RMGLParser.charText`.
 	 * @param ctx the parse tree
@@ -48,7 +46,6 @@ export interface RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitCharText?: (ctx: CharTextContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `RMGLParser.lineGraphicDefine`.
 	 * @param ctx the parse tree
@@ -59,7 +56,6 @@ export interface RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitLineGraphicDefine?: (ctx: LineGraphicDefineContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `RMGLParser.graphicType`.
 	 * @param ctx the parse tree
@@ -70,7 +66,6 @@ export interface RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitGraphicType?: (ctx: GraphicTypeContext) => void;
-
 	/**
 	 * Enter a parse tree produced by `RMGLParser.propertyDefine`.
 	 * @param ctx the parse tree

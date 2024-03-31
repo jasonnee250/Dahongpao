@@ -7,7 +7,6 @@ describe('parser parse',()=>{
     test('case1:simple rect',()=>{
         const parser=new GraphicLanguageParser();
         parser.parseString(t0);
-        console.log("test succ!");
         expect(parser.listener.nodeMap.size).toBe(1);
         const values=[...parser.listener.nodeMap.values()];
         const front=values.at(0);

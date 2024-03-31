@@ -1,33 +1,22 @@
-// Generated from ./src/grammar/g4/RMGLParser.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./src/grammar/g4/RMGLParser.g4 by ANTLR 4.13.1
+// noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 
+import {
+	ATN,
+	ATNDeserializer, DecisionState, DFA, FailedPredicateException,
+	RecognitionException, NoViableAltException, BailErrorStrategy,
+	Parser, ParserATNSimulator,
+	RuleContext, ParserRuleContext, PredictionMode, PredictionContextCache,
+	TerminalNode, RuleNode,
+	Token, TokenStream,
+	Interval, IntervalSet
+} from 'antlr4';
+import RMGLParserListener from "./RMGLParserListener.js";
+// for running tests with parameters, TODO: discuss strategy for typed parameters in CI
+// eslint-disable-next-line no-unused-vars
+type int = number;
 
-import { ATN } from "antlr4ts/atn/ATN";
-import { ATNDeserializer } from "antlr4ts/atn/ATNDeserializer";
-import { FailedPredicateException } from "antlr4ts/FailedPredicateException";
-import { NotNull } from "antlr4ts/Decorators";
-import { NoViableAltException } from "antlr4ts/NoViableAltException";
-import { Override } from "antlr4ts/Decorators";
-import { Parser } from "antlr4ts/Parser";
-import { ParserRuleContext } from "antlr4ts/ParserRuleContext";
-import { ParserATNSimulator } from "antlr4ts/atn/ParserATNSimulator";
-import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
-import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
-import { RecognitionException } from "antlr4ts/RecognitionException";
-import { RuleContext } from "antlr4ts/RuleContext";
-//import { RuleVersion } from "antlr4ts/RuleVersion";
-import { TerminalNode } from "antlr4ts/tree/TerminalNode";
-import { Token } from "antlr4ts/Token";
-import { TokenStream } from "antlr4ts/TokenStream";
-import { Vocabulary } from "antlr4ts/Vocabulary";
-import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
-
-import * as Utils from "antlr4ts/misc/Utils";
-
-import { RMGLParserListener } from "./RMGLParserListener";
-import { RMGLParserVisitor } from "./RMGLParserVisitor";
-
-
-export class RMGLParser extends Parser {
+export default class RMGLParser extends Parser {
 	public static readonly Rect = 1;
 	public static readonly Circle = 2;
 	public static readonly X = 3;
@@ -51,46 +40,47 @@ export class RMGLParser extends Parser {
 	public static readonly Char = 21;
 	public static readonly AnnotationQuotation = 22;
 	public static readonly AnnotationChar = 23;
+	public static readonly EOF = Token.EOF;
 	public static readonly RULE_statement = 0;
 	public static readonly RULE_variableName = 1;
 	public static readonly RULE_charText = 2;
 	public static readonly RULE_lineGraphicDefine = 3;
 	public static readonly RULE_graphicType = 4;
 	public static readonly RULE_propertyDefine = 5;
+	public static readonly literalNames: (string | null)[] = [ null, "'Rect'", 
+                                                            "'Circle'", 
+                                                            "'x'", "'y'", 
+                                                            "'w'", "'h'", 
+                                                            "'angle'", "'color'", 
+                                                            "'text'", "'alpha'", 
+                                                            "'borderWidth'", 
+                                                            "'borderColor'", 
+                                                            "'BorderAlpha'", 
+                                                            "','", "';'" ];
+	public static readonly symbolicNames: (string | null)[] = [ null, "Rect", 
+                                                             "Circle", "X", 
+                                                             "Y", "W", "H", 
+                                                             "Angle", "Color", 
+                                                             "Text", "Alpha", 
+                                                             "BorderWidth", 
+                                                             "BorderColor", 
+                                                             "BorderAlpha", 
+                                                             "Comma", "Semicolon", 
+                                                             "Quotation", 
+                                                             "Letter", "TokenChar", 
+                                                             "NL", "Space", 
+                                                             "Char", "AnnotationQuotation", 
+                                                             "AnnotationChar" ];
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
 		"statement", "variableName", "charText", "lineGraphicDefine", "graphicType", 
 		"propertyDefine",
 	];
-
-	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
-		undefined, "'Rect'", "'Circle'", "'x'", "'y'", "'w'", "'h'", "'angle'", 
-		"'color'", "'text'", "'alpha'", "'borderWidth'", "'borderColor'", "'BorderAlpha'", 
-		"','", "';'",
-	];
-	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "Rect", "Circle", "X", "Y", "W", "H", "Angle", "Color", "Text", 
-		"Alpha", "BorderWidth", "BorderColor", "BorderAlpha", "Comma", "Semicolon", 
-		"Quotation", "Letter", "TokenChar", "NL", "Space", "Char", "AnnotationQuotation", 
-		"AnnotationChar",
-	];
-	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(RMGLParser._LITERAL_NAMES, RMGLParser._SYMBOLIC_NAMES, []);
-
-	// @Override
-	// @NotNull
-	public get vocabulary(): Vocabulary {
-		return RMGLParser.VOCABULARY;
-	}
-	// tslint:enable:no-trailing-whitespace
-
-	// @Override
 	public get grammarFileName(): string { return "RMGLParser.g4"; }
-
-	// @Override
+	public get literalNames(): (string | null)[] { return RMGLParser.literalNames; }
+	public get symbolicNames(): (string | null)[] { return RMGLParser.symbolicNames; }
 	public get ruleNames(): string[] { return RMGLParser.ruleNames; }
-
-	// @Override
-	public get serializedATN(): string { return RMGLParser._serializedATN; }
+	public get serializedATN(): number[] { return RMGLParser._serializedATN; }
 
 	protected createFailedPredicateException(predicate?: string, message?: string): FailedPredicateException {
 		return new FailedPredicateException(this, predicate, message);
@@ -98,15 +88,15 @@ export class RMGLParser extends Parser {
 
 	constructor(input: TokenStream) {
 		super(input);
-		this._interp = new ParserATNSimulator(RMGLParser._ATN, this);
+		this._interp = new ParserATNSimulator(this, RMGLParser._ATN, RMGLParser.DecisionsToDFA, new PredictionContextCache());
 	}
 	// @RuleVersion(0)
 	public statement(): StatementContext {
-		let _localctx: StatementContext = new StatementContext(this._ctx, this.state);
-		this.enterRule(_localctx, 0, RMGLParser.RULE_statement);
+		let localctx: StatementContext = new StatementContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 0, RMGLParser.RULE_statement);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 13;
 			this._errHandler.sync(this);
@@ -121,12 +111,12 @@ export class RMGLParser extends Parser {
 				this.state = 15;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			} while (_la === RMGLParser.Rect || _la === RMGLParser.Circle);
+			} while (_la===1 || _la===2);
 			}
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -136,15 +126,15 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 	// @RuleVersion(0)
 	public variableName(): VariableNameContext {
-		let _localctx: VariableNameContext = new VariableNameContext(this._ctx, this.state);
-		this.enterRule(_localctx, 2, RMGLParser.RULE_variableName);
+		let localctx: VariableNameContext = new VariableNameContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 2, RMGLParser.RULE_variableName);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 18;
 			this._errHandler.sync(this);
@@ -159,12 +149,12 @@ export class RMGLParser extends Parser {
 				this.state = 20;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			} while (_la === RMGLParser.Letter);
+			} while (_la===17);
 			}
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -174,15 +164,15 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 	// @RuleVersion(0)
 	public charText(): CharTextContext {
-		let _localctx: CharTextContext = new CharTextContext(this._ctx, this.state);
-		this.enterRule(_localctx, 4, RMGLParser.RULE_charText);
+		let localctx: CharTextContext = new CharTextContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 4, RMGLParser.RULE_charText);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 23;
 			this._errHandler.sync(this);
@@ -197,12 +187,12 @@ export class RMGLParser extends Parser {
 				this.state = 25;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			} while (_la === RMGLParser.TokenChar);
+			} while (_la===18);
 			}
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -212,22 +202,22 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 	// @RuleVersion(0)
 	public lineGraphicDefine(): LineGraphicDefineContext {
-		let _localctx: LineGraphicDefineContext = new LineGraphicDefineContext(this._ctx, this.state);
-		this.enterRule(_localctx, 6, RMGLParser.RULE_lineGraphicDefine);
+		let localctx: LineGraphicDefineContext = new LineGraphicDefineContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 6, RMGLParser.RULE_lineGraphicDefine);
 		let _la: number;
 		try {
 			let _alt: number;
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 27;
 			this.graphicType();
 			this.state = 33;
 			this._errHandler.sync(this);
-			_alt = this.interpreter.adaptivePredict(this._input, 3, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
@@ -241,14 +231,14 @@ export class RMGLParser extends Parser {
 				}
 				this.state = 35;
 				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input, 3, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
 			}
 			this.state = 36;
 			this.variableName();
 			this.state = 40;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << RMGLParser.X) | (1 << RMGLParser.Y) | (1 << RMGLParser.W) | (1 << RMGLParser.H) | (1 << RMGLParser.Angle) | (1 << RMGLParser.Color) | (1 << RMGLParser.Text) | (1 << RMGLParser.Alpha) | (1 << RMGLParser.BorderWidth) | (1 << RMGLParser.BorderColor) | (1 << RMGLParser.BorderAlpha))) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 16376) !== 0)) {
 				{
 				{
 				this.state = 37;
@@ -262,7 +252,7 @@ export class RMGLParser extends Parser {
 			this.state = 46;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la === RMGLParser.NL) {
+			while (_la===19) {
 				{
 				{
 				this.state = 43;
@@ -277,7 +267,7 @@ export class RMGLParser extends Parser {
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -287,33 +277,30 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 	// @RuleVersion(0)
 	public graphicType(): GraphicTypeContext {
-		let _localctx: GraphicTypeContext = new GraphicTypeContext(this._ctx, this.state);
-		this.enterRule(_localctx, 8, RMGLParser.RULE_graphicType);
+		let localctx: GraphicTypeContext = new GraphicTypeContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 8, RMGLParser.RULE_graphicType);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 49;
 			_la = this._input.LA(1);
-			if (!(_la === RMGLParser.Rect || _la === RMGLParser.Circle)) {
+			if(!(_la===1 || _la===2)) {
 			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
+			}
+			else {
 				this._errHandler.reportMatch(this);
-				this.consume();
+			    this.consume();
 			}
 			}
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -323,47 +310,41 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 	// @RuleVersion(0)
 	public propertyDefine(): PropertyDefineContext {
-		let _localctx: PropertyDefineContext = new PropertyDefineContext(this._ctx, this.state);
-		this.enterRule(_localctx, 10, RMGLParser.RULE_propertyDefine);
+		let localctx: PropertyDefineContext = new PropertyDefineContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 10, RMGLParser.RULE_propertyDefine);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
+			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 51;
 			_la = this._input.LA(1);
-			if (!((((_la) & ~0x1F) === 0 && ((1 << _la) & ((1 << RMGLParser.X) | (1 << RMGLParser.Y) | (1 << RMGLParser.W) | (1 << RMGLParser.H) | (1 << RMGLParser.Angle) | (1 << RMGLParser.Color) | (1 << RMGLParser.Text) | (1 << RMGLParser.Alpha) | (1 << RMGLParser.BorderWidth) | (1 << RMGLParser.BorderColor) | (1 << RMGLParser.BorderAlpha))) !== 0))) {
+			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 16376) !== 0))) {
 			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
+			}
+			else {
 				this._errHandler.reportMatch(this);
-				this.consume();
+			    this.consume();
 			}
 			this.state = 52;
 			this.charText();
 			this.state = 53;
 			_la = this._input.LA(1);
-			if (!(_la === RMGLParser.Comma || _la === RMGLParser.Semicolon)) {
+			if(!(_la===14 || _la===15)) {
 			this._errHandler.recoverInline(this);
-			} else {
-				if (this._input.LA(1) === Token.EOF) {
-					this.matchedEOF = true;
-				}
-
+			}
+			else {
 				this._errHandler.reportMatch(this);
-				this.consume();
+			    this.consume();
 			}
 			}
 		}
 		catch (re) {
 			if (re instanceof RecognitionException) {
-				_localctx.exception = re;
+				localctx.exception = re;
 				this._errHandler.reportError(this, re);
 				this._errHandler.recover(this, re);
 			} else {
@@ -373,301 +354,255 @@ export class RMGLParser extends Parser {
 		finally {
 			this.exitRule();
 		}
-		return _localctx;
+		return localctx;
 	}
 
-	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03\x19:\x04\x02" +
-		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
-		"\t\x07\x03\x02\x06\x02\x10\n\x02\r\x02\x0E\x02\x11\x03\x03\x06\x03\x15" +
-		"\n\x03\r\x03\x0E\x03\x16\x03\x04\x06\x04\x1A\n\x04\r\x04\x0E\x04\x1B\x03" +
-		"\x05\x03\x05\x03\x05\x03\x05\x07\x05\"\n\x05\f\x05\x0E\x05%\v\x05\x03" +
-		"\x05\x03\x05\x07\x05)\n\x05\f\x05\x0E\x05,\v\x05\x03\x05\x07\x05/\n\x05" +
-		"\f\x05\x0E\x052\v\x05\x03\x06\x03\x06\x03\x07\x03\x07\x03\x07\x03\x07" +
-		"\x03\x07\x02\x02\x02\b\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x02\x05" +
-		"\x03\x02\x03\x04\x03\x02\x05\x0F\x03\x02\x10\x11\x029\x02\x0F\x03\x02" +
-		"\x02\x02\x04\x14\x03\x02\x02\x02\x06\x19\x03\x02\x02\x02\b\x1D\x03\x02" +
-		"\x02\x02\n3\x03\x02\x02\x02\f5\x03\x02\x02\x02\x0E\x10\x05\b\x05\x02\x0F" +
-		"\x0E\x03\x02\x02\x02\x10\x11\x03\x02\x02\x02\x11\x0F\x03\x02\x02\x02\x11" +
-		"\x12\x03\x02\x02\x02\x12\x03\x03\x02\x02\x02\x13\x15\x07\x13\x02\x02\x14" +
-		"\x13\x03\x02\x02\x02\x15\x16\x03\x02\x02\x02\x16\x14\x03\x02\x02\x02\x16" +
-		"\x17\x03\x02\x02\x02\x17\x05\x03\x02\x02\x02\x18\x1A\x07\x14\x02\x02\x19" +
-		"\x18\x03\x02\x02\x02\x1A\x1B\x03\x02\x02\x02\x1B\x19\x03\x02\x02\x02\x1B" +
-		"\x1C\x03\x02\x02\x02\x1C\x07\x03\x02\x02\x02\x1D#\x05\n\x06\x02\x1E\x1F" +
-		"\x05\x04\x03\x02\x1F \x07\x10\x02\x02 \"\x03\x02\x02\x02!\x1E\x03\x02" +
-		"\x02\x02\"%\x03\x02\x02\x02#!\x03\x02\x02\x02#$\x03\x02\x02\x02$&\x03" +
-		"\x02\x02\x02%#\x03\x02\x02\x02&*\x05\x04\x03\x02\')\x05\f\x07\x02(\'\x03" +
-		"\x02\x02\x02),\x03\x02\x02\x02*(\x03\x02\x02\x02*+\x03\x02\x02\x02+0\x03" +
-		"\x02\x02\x02,*\x03\x02\x02\x02-/\x07\x15\x02\x02.-\x03\x02\x02\x02/2\x03" +
-		"\x02\x02\x020.\x03\x02\x02\x0201\x03\x02\x02\x021\t\x03\x02\x02\x0220" +
-		"\x03\x02\x02\x0234\t\x02\x02\x024\v\x03\x02\x02\x0256\t\x03\x02\x0267" +
-		"\x05\x06\x04\x0278\t\x04\x02\x028\r\x03\x02\x02\x02\b\x11\x16\x1B#*0";
-	public static __ATN: ATN;
+	public static readonly _serializedATN: number[] = [4,1,23,56,2,0,7,0,2,
+	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,0,14,8,0,11,0,12,0,15,1,1,4,
+	1,19,8,1,11,1,12,1,20,1,2,4,2,24,8,2,11,2,12,2,25,1,3,1,3,1,3,1,3,5,3,32,
+	8,3,10,3,12,3,35,9,3,1,3,1,3,5,3,39,8,3,10,3,12,3,42,9,3,1,3,5,3,45,8,3,
+	10,3,12,3,48,9,3,1,4,1,4,1,5,1,5,1,5,1,5,1,5,0,0,6,0,2,4,6,8,10,0,3,1,0,
+	1,2,1,0,3,13,1,0,14,15,55,0,13,1,0,0,0,2,18,1,0,0,0,4,23,1,0,0,0,6,27,1,
+	0,0,0,8,49,1,0,0,0,10,51,1,0,0,0,12,14,3,6,3,0,13,12,1,0,0,0,14,15,1,0,
+	0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,1,1,0,0,0,17,19,5,17,0,0,18,17,1,0,0,
+	0,19,20,1,0,0,0,20,18,1,0,0,0,20,21,1,0,0,0,21,3,1,0,0,0,22,24,5,18,0,0,
+	23,22,1,0,0,0,24,25,1,0,0,0,25,23,1,0,0,0,25,26,1,0,0,0,26,5,1,0,0,0,27,
+	33,3,8,4,0,28,29,3,2,1,0,29,30,5,14,0,0,30,32,1,0,0,0,31,28,1,0,0,0,32,
+	35,1,0,0,0,33,31,1,0,0,0,33,34,1,0,0,0,34,36,1,0,0,0,35,33,1,0,0,0,36,40,
+	3,2,1,0,37,39,3,10,5,0,38,37,1,0,0,0,39,42,1,0,0,0,40,38,1,0,0,0,40,41,
+	1,0,0,0,41,46,1,0,0,0,42,40,1,0,0,0,43,45,5,19,0,0,44,43,1,0,0,0,45,48,
+	1,0,0,0,46,44,1,0,0,0,46,47,1,0,0,0,47,7,1,0,0,0,48,46,1,0,0,0,49,50,7,
+	0,0,0,50,9,1,0,0,0,51,52,7,1,0,0,52,53,3,4,2,0,53,54,7,2,0,0,54,11,1,0,
+	0,0,6,15,20,25,33,40,46];
+
+	private static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!RMGLParser.__ATN) {
-			RMGLParser.__ATN = new ATNDeserializer().deserialize(Utils.toCharArray(RMGLParser._serializedATN));
+			RMGLParser.__ATN = new ATNDeserializer().deserialize(RMGLParser._serializedATN);
 		}
 
 		return RMGLParser.__ATN;
 	}
 
+
+	static DecisionsToDFA = RMGLParser._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
+
 }
 
 export class StatementContext extends ParserRuleContext {
-	public lineGraphicDefine(): LineGraphicDefineContext[];
-	public lineGraphicDefine(i: number): LineGraphicDefineContext;
-	public lineGraphicDefine(i?: number): LineGraphicDefineContext | LineGraphicDefineContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(LineGraphicDefineContext);
-		} else {
-			return this.getRuleContext(i, LineGraphicDefineContext);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_statement; }
-	// @Override
+	public lineGraphicDefine_list(): LineGraphicDefineContext[] {
+		return this.getTypedRuleContexts(LineGraphicDefineContext) as LineGraphicDefineContext[];
+	}
+	public lineGraphicDefine(i: number): LineGraphicDefineContext {
+		return this.getTypedRuleContext(LineGraphicDefineContext, i) as LineGraphicDefineContext;
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_statement;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterStatement) {
-			listener.enterStatement(this);
+	    if(listener.enterStatement) {
+	 		listener.enterStatement(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitStatement) {
-			listener.exitStatement(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitStatement) {
-			return visitor.visitStatement(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitStatement) {
+	 		listener.exitStatement(this);
 		}
 	}
 }
 
 
 export class VariableNameContext extends ParserRuleContext {
-	public Letter(): TerminalNode[];
-	public Letter(i: number): TerminalNode;
-	public Letter(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(RMGLParser.Letter);
-		} else {
-			return this.getToken(RMGLParser.Letter, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_variableName; }
-	// @Override
+	public Letter_list(): TerminalNode[] {
+	    	return this.getTokens(RMGLParser.Letter);
+	}
+	public Letter(i: number): TerminalNode {
+		return this.getToken(RMGLParser.Letter, i);
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_variableName;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterVariableName) {
-			listener.enterVariableName(this);
+	    if(listener.enterVariableName) {
+	 		listener.enterVariableName(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitVariableName) {
-			listener.exitVariableName(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitVariableName) {
-			return visitor.visitVariableName(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitVariableName) {
+	 		listener.exitVariableName(this);
 		}
 	}
 }
 
 
 export class CharTextContext extends ParserRuleContext {
-	public TokenChar(): TerminalNode[];
-	public TokenChar(i: number): TerminalNode;
-	public TokenChar(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(RMGLParser.TokenChar);
-		} else {
-			return this.getToken(RMGLParser.TokenChar, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_charText; }
-	// @Override
+	public TokenChar_list(): TerminalNode[] {
+	    	return this.getTokens(RMGLParser.TokenChar);
+	}
+	public TokenChar(i: number): TerminalNode {
+		return this.getToken(RMGLParser.TokenChar, i);
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_charText;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterCharText) {
-			listener.enterCharText(this);
+	    if(listener.enterCharText) {
+	 		listener.enterCharText(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitCharText) {
-			listener.exitCharText(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitCharText) {
-			return visitor.visitCharText(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitCharText) {
+	 		listener.exitCharText(this);
 		}
 	}
 }
 
 
 export class LineGraphicDefineContext extends ParserRuleContext {
-	public graphicType(): GraphicTypeContext {
-		return this.getRuleContext(0, GraphicTypeContext);
-	}
-	public variableName(): VariableNameContext[];
-	public variableName(i: number): VariableNameContext;
-	public variableName(i?: number): VariableNameContext | VariableNameContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(VariableNameContext);
-		} else {
-			return this.getRuleContext(i, VariableNameContext);
-		}
-	}
-	public Comma(): TerminalNode[];
-	public Comma(i: number): TerminalNode;
-	public Comma(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(RMGLParser.Comma);
-		} else {
-			return this.getToken(RMGLParser.Comma, i);
-		}
-	}
-	public propertyDefine(): PropertyDefineContext[];
-	public propertyDefine(i: number): PropertyDefineContext;
-	public propertyDefine(i?: number): PropertyDefineContext | PropertyDefineContext[] {
-		if (i === undefined) {
-			return this.getRuleContexts(PropertyDefineContext);
-		} else {
-			return this.getRuleContext(i, PropertyDefineContext);
-		}
-	}
-	public NL(): TerminalNode[];
-	public NL(i: number): TerminalNode;
-	public NL(i?: number): TerminalNode | TerminalNode[] {
-		if (i === undefined) {
-			return this.getTokens(RMGLParser.NL);
-		} else {
-			return this.getToken(RMGLParser.NL, i);
-		}
-	}
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_lineGraphicDefine; }
-	// @Override
+	public graphicType(): GraphicTypeContext {
+		return this.getTypedRuleContext(GraphicTypeContext, 0) as GraphicTypeContext;
+	}
+	public variableName_list(): VariableNameContext[] {
+		return this.getTypedRuleContexts(VariableNameContext) as VariableNameContext[];
+	}
+	public variableName(i: number): VariableNameContext {
+		return this.getTypedRuleContext(VariableNameContext, i) as VariableNameContext;
+	}
+	public Comma_list(): TerminalNode[] {
+	    	return this.getTokens(RMGLParser.Comma);
+	}
+	public Comma(i: number): TerminalNode {
+		return this.getToken(RMGLParser.Comma, i);
+	}
+	public propertyDefine_list(): PropertyDefineContext[] {
+		return this.getTypedRuleContexts(PropertyDefineContext) as PropertyDefineContext[];
+	}
+	public propertyDefine(i: number): PropertyDefineContext {
+		return this.getTypedRuleContext(PropertyDefineContext, i) as PropertyDefineContext;
+	}
+	public NL_list(): TerminalNode[] {
+	    	return this.getTokens(RMGLParser.NL);
+	}
+	public NL(i: number): TerminalNode {
+		return this.getToken(RMGLParser.NL, i);
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_lineGraphicDefine;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterLineGraphicDefine) {
-			listener.enterLineGraphicDefine(this);
+	    if(listener.enterLineGraphicDefine) {
+	 		listener.enterLineGraphicDefine(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitLineGraphicDefine) {
-			listener.exitLineGraphicDefine(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitLineGraphicDefine) {
-			return visitor.visitLineGraphicDefine(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitLineGraphicDefine) {
+	 		listener.exitLineGraphicDefine(this);
 		}
 	}
 }
 
 
 export class GraphicTypeContext extends ParserRuleContext {
-	public Rect(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Rect, 0); }
-	public Circle(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Circle, 0); }
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_graphicType; }
-	// @Override
+	public Rect(): TerminalNode {
+		return this.getToken(RMGLParser.Rect, 0);
+	}
+	public Circle(): TerminalNode {
+		return this.getToken(RMGLParser.Circle, 0);
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_graphicType;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterGraphicType) {
-			listener.enterGraphicType(this);
+	    if(listener.enterGraphicType) {
+	 		listener.enterGraphicType(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitGraphicType) {
-			listener.exitGraphicType(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitGraphicType) {
-			return visitor.visitGraphicType(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitGraphicType) {
+	 		listener.exitGraphicType(this);
 		}
 	}
 }
 
 
 export class PropertyDefineContext extends ParserRuleContext {
-	public charText(): CharTextContext {
-		return this.getRuleContext(0, CharTextContext);
-	}
-	public X(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.X, 0); }
-	public Y(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Y, 0); }
-	public W(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.W, 0); }
-	public H(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.H, 0); }
-	public Angle(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Angle, 0); }
-	public Color(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Color, 0); }
-	public Text(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Text, 0); }
-	public Alpha(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Alpha, 0); }
-	public BorderColor(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.BorderColor, 0); }
-	public BorderWidth(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.BorderWidth, 0); }
-	public BorderAlpha(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.BorderAlpha, 0); }
-	public Comma(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Comma, 0); }
-	public Semicolon(): TerminalNode | undefined { return this.tryGetToken(RMGLParser.Semicolon, 0); }
-	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
+	constructor(parser?: RMGLParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
+    	this.parser = parser;
 	}
-	// @Override
-	public get ruleIndex(): number { return RMGLParser.RULE_propertyDefine; }
-	// @Override
+	public charText(): CharTextContext {
+		return this.getTypedRuleContext(CharTextContext, 0) as CharTextContext;
+	}
+	public X(): TerminalNode {
+		return this.getToken(RMGLParser.X, 0);
+	}
+	public Y(): TerminalNode {
+		return this.getToken(RMGLParser.Y, 0);
+	}
+	public W(): TerminalNode {
+		return this.getToken(RMGLParser.W, 0);
+	}
+	public H(): TerminalNode {
+		return this.getToken(RMGLParser.H, 0);
+	}
+	public Angle(): TerminalNode {
+		return this.getToken(RMGLParser.Angle, 0);
+	}
+	public Color(): TerminalNode {
+		return this.getToken(RMGLParser.Color, 0);
+	}
+	public Text(): TerminalNode {
+		return this.getToken(RMGLParser.Text, 0);
+	}
+	public Alpha(): TerminalNode {
+		return this.getToken(RMGLParser.Alpha, 0);
+	}
+	public BorderColor(): TerminalNode {
+		return this.getToken(RMGLParser.BorderColor, 0);
+	}
+	public BorderWidth(): TerminalNode {
+		return this.getToken(RMGLParser.BorderWidth, 0);
+	}
+	public BorderAlpha(): TerminalNode {
+		return this.getToken(RMGLParser.BorderAlpha, 0);
+	}
+	public Comma(): TerminalNode {
+		return this.getToken(RMGLParser.Comma, 0);
+	}
+	public Semicolon(): TerminalNode {
+		return this.getToken(RMGLParser.Semicolon, 0);
+	}
+    public get ruleIndex(): number {
+    	return RMGLParser.RULE_propertyDefine;
+	}
 	public enterRule(listener: RMGLParserListener): void {
-		if (listener.enterPropertyDefine) {
-			listener.enterPropertyDefine(this);
+	    if(listener.enterPropertyDefine) {
+	 		listener.enterPropertyDefine(this);
 		}
 	}
-	// @Override
 	public exitRule(listener: RMGLParserListener): void {
-		if (listener.exitPropertyDefine) {
-			listener.exitPropertyDefine(this);
-		}
-	}
-	// @Override
-	public accept<Result>(visitor: RMGLParserVisitor<Result>): Result {
-		if (visitor.visitPropertyDefine) {
-			return visitor.visitPropertyDefine(this);
-		} else {
-			return visitor.visitChildren(this);
+	    if(listener.exitPropertyDefine) {
+	 		listener.exitPropertyDefine(this);
 		}
 	}
 }
-
-
