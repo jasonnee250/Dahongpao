@@ -8,22 +8,34 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "genAntlr": "./scripts/genAntlr.sh"
+    "genAntlr": "./scripts/genAntlr.sh",
+    "antlr4ts": "antlr4ts -visitor ./src/grammar/g4/RMGLParser.g4",
+    "test": "jest"
   },
   "dependencies": {
+    "antlr4": "^4.13.1-patch-1",
+    "antlr4ts": "^0.5.0-alpha.4",
     "pixi.js": "^7.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-typescript": "^7.24.1",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
