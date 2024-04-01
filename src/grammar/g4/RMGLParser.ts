@@ -54,7 +54,7 @@ export default class RMGLParser extends Parser {
                                                             "'text'", "'alpha'", 
                                                             "'borderWidth'", 
                                                             "'borderColor'", 
-                                                            "'BorderAlpha'", 
+                                                            "'borderAlpha'", 
                                                             "','", "';'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, "Rect", 
                                                              "Circle", "X", 

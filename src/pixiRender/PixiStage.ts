@@ -1,13 +1,13 @@
 import { Application, Container } from "pixi.js";
 
 
-export class RenderApp {
+export class PixiStage {
     public app: Application | null = null;
 
     //主画板
     container: Container;
 
-    private constructor() {
+    constructor() {
         this.container = new Container();
     }
 
@@ -22,5 +22,14 @@ export class RenderApp {
         this.app!.renderer.resize(element.clientWidth, element.clientHeight);
         this.app!.stage.addChild(this.container);
 
+    }
+
+    public clear():void{
+        this.container.removeChildren();
+    }
+
+    destroy():void{
+        this.app?.view.parentNode?.removeChild(this.app?.view);
+        this.app?.destroy();
     }
 }

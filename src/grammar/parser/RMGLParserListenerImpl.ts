@@ -1,6 +1,7 @@
-import { GraphicNode, GraphicNodeType } from '@/entity/graphic'
+import { GraphicNodeType } from '@/entity/graphic'
 import { GraphicTypeContext, LineGraphicDefineContext, PropertyDefineContext, StatementContext } from '../g4/RMGLParser'
 import RMGLParserListener from "../g4/RMGLParserListener.ts";
+import {PixiGraphicNode as GraphicNode} from "@/pixiRender/PixiGraphicNode.ts";
 
 
 export class RMGLParserListenerImpl extends RMGLParserListener{
@@ -63,10 +64,10 @@ export class RMGLParserListenerImpl extends RMGLParserListener{
                 node.borderColor=parseInt(property.charText().getText());
             }
             if(property.BorderAlpha()){
-                node.borderColor=parseFloat(property.charText().getText());
+                node.borderAlpha=parseFloat(property.charText().getText());
             }
             if(property.BorderWidth()){
-                node.borderColor=parseFloat(property.charText().getText());
+                node.borderWidth=parseFloat(property.charText().getText());
             }
         }
     }

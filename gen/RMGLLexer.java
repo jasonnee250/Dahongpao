@@ -42,7 +42,7 @@ public class RMGLLexer extends Lexer {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'Rect'", "'Circle'", "'x'", "'y'", "'w'", "'h'", "'angle'", "'color'", 
-			"'text'", "'alpha'", "'borderWidth'", "'borderColor'", "'BorderAlpha'", 
+			"'text'", "'alpha'", "'borderWidth'", "'borderColor'", "'borderAlpha'", 
 			"','", "';'"
 		};
 	}
@@ -183,7 +183,7 @@ public class RMGLLexer extends Lexer {
 		"\u0000hi\u0005d\u0000\u0000ij\u0005e\u0000\u0000jk\u0005r\u0000\u0000"+
 		"kl\u0005C\u0000\u0000lm\u0005o\u0000\u0000mn\u0005l\u0000\u0000no\u0005"+
 		"o\u0000\u0000op\u0005r\u0000\u0000p\u0019\u0001\u0000\u0000\u0000qr\u0005"+
-		"B\u0000\u0000rs\u0005o\u0000\u0000st\u0005r\u0000\u0000tu\u0005d\u0000"+
+		"b\u0000\u0000rs\u0005o\u0000\u0000st\u0005r\u0000\u0000tu\u0005d\u0000"+
 		"\u0000uv\u0005e\u0000\u0000vw\u0005r\u0000\u0000wx\u0005A\u0000\u0000"+
 		"xy\u0005l\u0000\u0000yz\u0005p\u0000\u0000z{\u0005h\u0000\u0000{|\u0005"+
 		"a\u0000\u0000|\u001b\u0001\u0000\u0000\u0000}~\u0005,\u0000\u0000~\u001d"+

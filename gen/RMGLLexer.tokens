@@ -32,6 +32,6 @@ AnnotationChar=22
 'alpha'=10
 'borderWidth'=11
 'borderColor'=12
-'BorderAlpha'=13
+'borderAlpha'=13
 ','=14
 ';'=15

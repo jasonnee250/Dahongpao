@@ -15,7 +15,7 @@ Text:'text';
 Alpha:'alpha';
 BorderWidth:'borderWidth';
 BorderColor:'borderColor';
-BorderAlpha:'BorderAlpha';
+BorderAlpha:'borderAlpha';
 
 //符号
 Comma:',';

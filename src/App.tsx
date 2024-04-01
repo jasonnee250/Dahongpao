@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useEffect, useRef} from "react";
+import "./App.css";
+import {GMLApp} from "@/app/GMLApp.ts";
+
+const CANVAS_ID = "main-app-canvas";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const canvasRef = useRef(null);
+    let gmlApp: GMLApp | null = null;
+    useEffect(() => {
+        gmlApp = new GMLApp();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+        const element = document.getElementById(CANVAS_ID);
+        if (element && gmlApp.stage.app==null) {
+            gmlApp.init(canvasRef.current!);
+            console.log(
+                "begin draw stage=",
+                element.clientWidth,
+                element.clientHeight,
+            );
+            gmlApp.stage.app!.renderer.resize(
+                element.clientWidth,
+                element.clientHeight,
+            );
+        }
+
+        return () => {
+            gmlApp?.stage.destroy();
+        }
+
+    }, [canvasRef]);
+
+    // const [text,setText]=useState<string>("");
+
+    const ref = useRef(null);
+
+    const draw = () => {
+        console.log("========>text draw:", ref.current!.value)
+        gmlApp!.draw(ref.current!.value);
+    }
+
+    // const textChange=(code:any)=>{
+    //     console.log("========>text change:",code.text)
+    //     setText(code.text);
+    // }
+
+    return (
+        <div className="container">
+            <div className="left-zone">
+                <div className="button-group">
+                    <button className="button" onClick={draw}>To Draw</button>
+                </div>
+                <textarea className="edit-zone" ref={ref}>
+                </textarea>
+            </div>
+            <div ref={canvasRef} id={CANVAS_ID} className="canvas"/>
+        </div>
+    );
 }
 
-export default App
+const AppMemo = React.memo(App);
+export default AppMemo;
