@@ -22,9 +22,7 @@ Comma:',';
 Semicolon:';';
 Quotation:'"' ->pushMode(ANNOTATION_MODE);
 //字符：
-//Number:[0-9];
-Letter:[a-zA-Z];
-TokenChar:[0-9a-zA-Z\u4e00-\u9fa5_];
+TokenChar:[0-9a-zA-Z\u4e00-\u9fa5_]+;
 NL:[\r\n];
 Space:[\t ]->skip;
 

@@ -33,13 +33,12 @@ export default class RMGLParser extends Parser {
 	public static readonly Comma = 14;
 	public static readonly Semicolon = 15;
 	public static readonly Quotation = 16;
-	public static readonly Letter = 17;
-	public static readonly TokenChar = 18;
-	public static readonly NL = 19;
-	public static readonly Space = 20;
-	public static readonly Char = 21;
-	public static readonly AnnotationQuotation = 22;
-	public static readonly AnnotationChar = 23;
+	public static readonly TokenChar = 17;
+	public static readonly NL = 18;
+	public static readonly Space = 19;
+	public static readonly Char = 20;
+	public static readonly AnnotationQuotation = 21;
+	public static readonly AnnotationChar = 22;
 	public static readonly EOF = Token.EOF;
 	public static readonly RULE_statement = 0;
 	public static readonly RULE_variableName = 1;
@@ -67,7 +66,7 @@ export default class RMGLParser extends Parser {
                                                              "BorderAlpha", 
                                                              "Comma", "Semicolon", 
                                                              "Quotation", 
-                                                             "Letter", "TokenChar", 
+                                                             "TokenChar", 
                                                              "NL", "Space", 
                                                              "Char", "AnnotationQuotation", 
                                                              "AnnotationChar" ];
@@ -132,24 +131,11 @@ export default class RMGLParser extends Parser {
 	public variableName(): VariableNameContext {
 		let localctx: VariableNameContext = new VariableNameContext(this, this._ctx, this.state);
 		this.enterRule(localctx, 2, RMGLParser.RULE_variableName);
-		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 18;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
-				{
-				{
-				this.state = 17;
-				this.match(RMGLParser.Letter);
-				}
-				}
-				this.state = 20;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while (_la===17);
+			this.state = 17;
+			this.match(RMGLParser.TokenChar);
 			}
 		}
 		catch (re) {
@@ -170,24 +156,11 @@ export default class RMGLParser extends Parser {
 	public charText(): CharTextContext {
 		let localctx: CharTextContext = new CharTextContext(this, this._ctx, this.state);
 		this.enterRule(localctx, 4, RMGLParser.RULE_charText);
-		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 23;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			do {
-				{
-				{
-				this.state = 22;
-				this.match(RMGLParser.TokenChar);
-				}
-				}
-				this.state = 25;
-				this._errHandler.sync(this);
-				_la = this._input.LA(1);
-			} while (_la===18);
+			this.state = 19;
+			this.match(RMGLParser.TokenChar);
 			}
 		}
 		catch (re) {
@@ -213,53 +186,53 @@ export default class RMGLParser extends Parser {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 27;
+			this.state = 21;
 			this.graphicType();
-			this.state = 33;
+			this.state = 27;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 1, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
 					{
-					this.state = 28;
+					this.state = 22;
 					this.variableName();
-					this.state = 29;
+					this.state = 23;
 					this.match(RMGLParser.Comma);
 					}
 					}
 				}
-				this.state = 35;
+				this.state = 29;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 1, this._ctx);
 			}
-			this.state = 36;
+			this.state = 30;
 			this.variableName();
-			this.state = 40;
+			this.state = 34;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 16376) !== 0)) {
 				{
 				{
-				this.state = 37;
+				this.state = 31;
 				this.propertyDefine();
 				}
 				}
-				this.state = 42;
+				this.state = 36;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 46;
+			this.state = 40;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===19) {
+			while (_la===18) {
 				{
 				{
-				this.state = 43;
+				this.state = 37;
 				this.match(RMGLParser.NL);
 				}
 				}
-				this.state = 48;
+				this.state = 42;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -287,7 +260,7 @@ export default class RMGLParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 49;
+			this.state = 43;
 			_la = this._input.LA(1);
 			if(!(_la===1 || _la===2)) {
 			this._errHandler.recoverInline(this);
@@ -320,7 +293,7 @@ export default class RMGLParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 51;
+			this.state = 45;
 			_la = this._input.LA(1);
 			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 16376) !== 0))) {
 			this._errHandler.recoverInline(this);
@@ -329,9 +302,9 @@ export default class RMGLParser extends Parser {
 				this._errHandler.reportMatch(this);
 			    this.consume();
 			}
-			this.state = 52;
+			this.state = 46;
 			this.charText();
-			this.state = 53;
+			this.state = 47;
 			_la = this._input.LA(1);
 			if(!(_la===14 || _la===15)) {
 			this._errHandler.recoverInline(this);
@@ -357,23 +330,21 @@ export default class RMGLParser extends Parser {
 		return localctx;
 	}
 
-	public static readonly _serializedATN: number[] = [4,1,23,56,2,0,7,0,2,
-	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,0,14,8,0,11,0,12,0,15,1,1,4,
-	1,19,8,1,11,1,12,1,20,1,2,4,2,24,8,2,11,2,12,2,25,1,3,1,3,1,3,1,3,5,3,32,
-	8,3,10,3,12,3,35,9,3,1,3,1,3,5,3,39,8,3,10,3,12,3,42,9,3,1,3,5,3,45,8,3,
-	10,3,12,3,48,9,3,1,4,1,4,1,5,1,5,1,5,1,5,1,5,0,0,6,0,2,4,6,8,10,0,3,1,0,
-	1,2,1,0,3,13,1,0,14,15,55,0,13,1,0,0,0,2,18,1,0,0,0,4,23,1,0,0,0,6,27,1,
-	0,0,0,8,49,1,0,0,0,10,51,1,0,0,0,12,14,3,6,3,0,13,12,1,0,0,0,14,15,1,0,
-	0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,1,1,0,0,0,17,19,5,17,0,0,18,17,1,0,0,
-	0,19,20,1,0,0,0,20,18,1,0,0,0,20,21,1,0,0,0,21,3,1,0,0,0,22,24,5,18,0,0,
-	23,22,1,0,0,0,24,25,1,0,0,0,25,23,1,0,0,0,25,26,1,0,0,0,26,5,1,0,0,0,27,
-	33,3,8,4,0,28,29,3,2,1,0,29,30,5,14,0,0,30,32,1,0,0,0,31,28,1,0,0,0,32,
-	35,1,0,0,0,33,31,1,0,0,0,33,34,1,0,0,0,34,36,1,0,0,0,35,33,1,0,0,0,36,40,
-	3,2,1,0,37,39,3,10,5,0,38,37,1,0,0,0,39,42,1,0,0,0,40,38,1,0,0,0,40,41,
-	1,0,0,0,41,46,1,0,0,0,42,40,1,0,0,0,43,45,5,19,0,0,44,43,1,0,0,0,45,48,
-	1,0,0,0,46,44,1,0,0,0,46,47,1,0,0,0,47,7,1,0,0,0,48,46,1,0,0,0,49,50,7,
-	0,0,0,50,9,1,0,0,0,51,52,7,1,0,0,52,53,3,4,2,0,53,54,7,2,0,0,54,11,1,0,
-	0,0,6,15,20,25,33,40,46];
+	public static readonly _serializedATN: number[] = [4,1,22,50,2,0,7,0,2,
+	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,0,14,8,0,11,0,12,0,15,1,1,1,
+	1,1,2,1,2,1,3,1,3,1,3,1,3,5,3,26,8,3,10,3,12,3,29,9,3,1,3,1,3,5,3,33,8,
+	3,10,3,12,3,36,9,3,1,3,5,3,39,8,3,10,3,12,3,42,9,3,1,4,1,4,1,5,1,5,1,5,
+	1,5,1,5,0,0,6,0,2,4,6,8,10,0,3,1,0,1,2,1,0,3,13,1,0,14,15,47,0,13,1,0,0,
+	0,2,17,1,0,0,0,4,19,1,0,0,0,6,21,1,0,0,0,8,43,1,0,0,0,10,45,1,0,0,0,12,
+	14,3,6,3,0,13,12,1,0,0,0,14,15,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,1,
+	1,0,0,0,17,18,5,17,0,0,18,3,1,0,0,0,19,20,5,17,0,0,20,5,1,0,0,0,21,27,3,
+	8,4,0,22,23,3,2,1,0,23,24,5,14,0,0,24,26,1,0,0,0,25,22,1,0,0,0,26,29,1,
+	0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,30,1,0,0,0,29,27,1,0,0,0,30,34,3,2,
+	1,0,31,33,3,10,5,0,32,31,1,0,0,0,33,36,1,0,0,0,34,32,1,0,0,0,34,35,1,0,
+	0,0,35,40,1,0,0,0,36,34,1,0,0,0,37,39,5,18,0,0,38,37,1,0,0,0,39,42,1,0,
+	0,0,40,38,1,0,0,0,40,41,1,0,0,0,41,7,1,0,0,0,42,40,1,0,0,0,43,44,7,0,0,
+	0,44,9,1,0,0,0,45,46,7,1,0,0,46,47,3,4,2,0,47,48,7,2,0,0,48,11,1,0,0,0,
+	4,15,27,34,40];
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
@@ -421,11 +392,8 @@ export class VariableNameContext extends ParserRuleContext {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public Letter_list(): TerminalNode[] {
-	    	return this.getTokens(RMGLParser.Letter);
-	}
-	public Letter(i: number): TerminalNode {
-		return this.getToken(RMGLParser.Letter, i);
+	public TokenChar(): TerminalNode {
+		return this.getToken(RMGLParser.TokenChar, 0);
 	}
     public get ruleIndex(): number {
     	return RMGLParser.RULE_variableName;
@@ -448,11 +416,8 @@ export class CharTextContext extends ParserRuleContext {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public TokenChar_list(): TerminalNode[] {
-	    	return this.getTokens(RMGLParser.TokenChar);
-	}
-	public TokenChar(i: number): TerminalNode {
-		return this.getToken(RMGLParser.TokenChar, i);
+	public TokenChar(): TerminalNode {
+		return this.getToken(RMGLParser.TokenChar, 0);
 	}
     public get ruleIndex(): number {
     	return RMGLParser.RULE_charText;

@@ -1,7 +1,7 @@
 import {describe,expect,test} from '@jest/globals'
 import {GraphicLanguageParser} from '../../src/grammar/parser/GraphicLanguageParser'
 
-const t0="Rect a x 0,y 0,w 100,h 200;";
+const t0="Rect a x 0,y 0,w 100,h 200,color 0xffffff;";
 
 describe('parser parse',()=>{
     test('case1:simple rect',()=>{
@@ -14,6 +14,7 @@ describe('parser parse',()=>{
         expect(front?.y).toBe(0);
         expect(front?.w).toBe(100);
         expect(front?.h).toBe(200);
+        expect(front?.color).toBe(0xffffff);
         expect(front?.angle).toBe(0);
         expect(front?.alpha).toBe(1);
     })

@@ -1,4 +1,4 @@
-import { GraphicNode, GraphicNodeType } from '../../entity/graphic'
+import { GraphicNode, GraphicNodeType } from '@/entity/graphic'
 import { GraphicTypeContext, LineGraphicDefineContext, PropertyDefineContext, StatementContext } from '../g4/RMGLParser'
 import RMGLParserListener from "../g4/RMGLParserListener.ts";
 

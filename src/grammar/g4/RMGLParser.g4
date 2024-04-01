@@ -7,8 +7,8 @@ options {
 statement:lineGraphicDefine+;
 
 //common
-variableName: Letter+;
-charText: TokenChar+;
+variableName: TokenChar;
+charText: TokenChar;
 
 //line graphic define
 lineGraphicDefine: graphicType (variableName Comma)* variableName  propertyDefine* NL*;
