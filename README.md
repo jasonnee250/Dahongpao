@@ -7,6 +7,25 @@
 ## 相关说明
 GML语言解析由[antlr4](https://github.com/antlr/antlr4)提供支持；
 目前支持了canvas2d和pixi.js两种底层渲染引擎，可供用户切换使用；  
+使用canvas2d渲染可以使用CanvasGMLApp;pixi.js渲染可以使用PixiGMLApp;  
+提供draw方法用于解析GML语言并绘制;  
+```typescript
+export interface GMLApp{
+    draw(text:string):void;
+}
+//使用canvas2d进行渲染
+class CanvasGMLApp implements GMLApp{
+    draw(text:string):void{
+        //...
+    }
+};
+//使用pixi.js进行渲染
+class PixiGMLApp implements GMLApp{
+    draw(text:string):void{
+        //...
+    }
+};
+```
 如下所示为使用pixi.js渲染的案例：
 ```javascript
 import {SimpleEditZone} from "@/component/editZone/SimpleEditZone.tsx";
