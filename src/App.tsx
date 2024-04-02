@@ -1,12 +1,13 @@
 import React, {useRef} from "react";
 import "./App.css";
 import {PixiCanvas} from "@/pixiRender/PixiCanvas.tsx";
-import {PixiGMLApp} from "@/pixiRender/PixiGMLApp.ts";
+import {Canvas2dNormal} from "@/canvasRender/Canvas2dNormal.tsx";
+import {CanvasGMLApp} from "@/canvasRender/CanvasGMLApp.ts";
 
 function App() {
 
     const ref = useRef(null);
-    const gmlApp:PixiGMLApp=new PixiGMLApp();
+    const gmlApp=new CanvasGMLApp();
 
     const draw = () => {
         console.log("========>text draw:", ref.current!.value)
@@ -22,7 +23,7 @@ function App() {
                 <textarea className="edit-zone" ref={ref}>
                 </textarea>
             </div>
-            <PixiCanvas gmlApp={gmlApp}/>
+            <Canvas2dNormal/>
         </div>
     );
 }
