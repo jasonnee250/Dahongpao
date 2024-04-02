@@ -1,0 +1,30 @@
+.left-zone {
+    width: 300px;
+    height: 100%;
+    background: #bcbcbc;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+
+    .button-group {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        flex-direction: row;
+
+        .button {
+            width: 200px;
+        }
+    }
+    .edit-zone{
+        height: 100%;
+        background: #bbbbbb;
+        color: #000000;
+        font-size: 14px;
+    }
+}

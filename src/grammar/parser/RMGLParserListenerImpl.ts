@@ -1,4 +1,4 @@
-import {GraphicNodeType} from '@/entity/graphic'
+import {GraphicNode, GraphicNodeType} from '@/entity/graphic'
 import {
     GraphicTypeContext,
     LineGraphicDefineContext,
@@ -7,8 +7,6 @@ import {
     TextDefineContext
 } from '../g4/RMGLParser'
 import RMGLParserListener from "../g4/RMGLParserListener.ts";
-// import {PixiGraphicNode as GraphicNode} from "@/pixiRender/PixiGraphicNode.ts";
-import {CanvasGraphicNode as GraphicNode} from "@/canvasRender/CanvasGraphicNode.ts";
 
 
 export class RMGLParserListenerImpl extends RMGLParserListener {

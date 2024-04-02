@@ -1,7 +1,9 @@
 import {GraphicLanguageParser} from "@/grammar/parser/GraphicLanguageParser.ts";
 import {PixiStage} from "@/pixiRender/PixiStage.ts";
+import {PixiGraphicNode} from "@/pixiRender/PixiGraphicNode.ts";
+import {GMLApp} from "@/entity/graphic.ts";
 
-export class PixiGMLApp {
+export class PixiGMLApp implements GMLApp {
 
     parser:GraphicLanguageParser;
     stage:PixiStage;
@@ -19,9 +21,10 @@ export class PixiGMLApp {
         this.stage.clear();
         this.parser.parseString(text);
         const map=this.parser.listener.nodeMap;
-        for(const [_,v] of map){
-            this.stage.container.addChild(v.g);
-            v.draw();
+        for(const [_,node] of map){
+            const renderNode=PixiGraphicNode.copyFrom(node);
+            this.stage.container.addChild(renderNode.g);
+            renderNode.draw();
         }
     }
 }

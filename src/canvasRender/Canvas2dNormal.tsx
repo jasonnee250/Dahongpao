@@ -7,7 +7,9 @@ export const Canvas2dNormal = () => {
     const canvasRef=useRef(null);
 
     const resizeCanvas=()=>{
+        // @ts-ignore
         canvasRef.current.width=window.innerWidth;
+        // @ts-ignore
         canvasRef.current.height=window.innerHeight;
     }
 

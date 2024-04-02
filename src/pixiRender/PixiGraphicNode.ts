@@ -6,6 +6,16 @@ export class PixiGraphicNode extends GraphicNode{
     g:Graphics;
     textGraphics:Text;
 
+    static copyFrom(node:GraphicNode):PixiGraphicNode{
+        const graphNode=new PixiGraphicNode(node.id);
+        const keys=Object.keys(node);
+        for(const key of keys){
+            // @ts-ignore
+            graphNode[key]=node[key];
+        }
+        return graphNode;
+    }
+
     constructor(id:string) {
         super(id);
         this.g=new Graphics();

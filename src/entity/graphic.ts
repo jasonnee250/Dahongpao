@@ -24,4 +24,11 @@ export class GraphicNode{
     constructor(id:string){
         this.id=id;
     }
+
+    draw():void{}
+}
+
+export interface GMLApp{
+    init(element: HTMLElement):void;
+    draw(text:string):void;
 }

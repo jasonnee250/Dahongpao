@@ -3,6 +3,16 @@ import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
 
 export class CanvasGraphicNode extends GraphicNode{
 
+    static copyFrom(node:GraphicNode):CanvasGraphicNode{
+        const graphNode=new CanvasGraphicNode(node.id);
+        const keys=Object.keys(node);
+        for(const key of keys){
+            // @ts-ignore
+            graphNode[key]=node[key];
+        }
+        return graphNode;
+    }
+
     constructor(id:string) {
         super(id);
     }

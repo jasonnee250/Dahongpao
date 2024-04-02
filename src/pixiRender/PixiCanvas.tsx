@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import {useEffect, useRef} from "react";
 import {PixiGMLApp} from "@/pixiRender/PixiGMLApp.ts";
 import './index.css';
 
