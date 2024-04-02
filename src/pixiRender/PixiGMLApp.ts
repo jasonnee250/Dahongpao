@@ -1,7 +1,7 @@
 import {GraphicLanguageParser} from "@/grammar/parser/GraphicLanguageParser.ts";
 import {PixiStage} from "@/pixiRender/PixiStage.ts";
 
-export class GMLApp{
+export class PixiGMLApp {
 
     parser:GraphicLanguageParser;
     stage:PixiStage;

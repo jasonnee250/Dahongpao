@@ -16,20 +16,30 @@ Alpha:'alpha';
 BorderWidth:'borderWidth';
 BorderColor:'borderColor';
 BorderAlpha:'borderAlpha';
+FontSize:'fontSize';
+FontColor:'fontColor';
 
 //符号
 Comma:',';
 Semicolon:';';
 Quotation:'"' ->pushMode(ANNOTATION_MODE);
+Slash:'//' -> pushMode(LINE_ANNOTATION_MODE);
 //字符：
-TokenChar:[0-9a-zA-Z\u4e00-\u9fa5_]+;
+TokenChar:([0-9a-zA-Z\u4e00-\u9fa5_.]|'-')+;
 NL:[\r\n];
 Space:[\t ]->skip;
 
-Char:'.';
+Char:.;
 
 mode ANNOTATION_MODE;
 
 AnnotationQuotation:'"'->popMode;
 
-AnnotationChar:'.';
+AnnotationChar:.;
+
+
+mode LINE_ANNOTATION_MODE;
+
+LineAnnotationNL:[\r\n]->popMode;
+
+LineAnnotationChar:.;

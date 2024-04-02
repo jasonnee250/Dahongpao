@@ -17,7 +17,9 @@ export class GraphicNode{
     alpha:number=1;
     borderWidth:number=1;
     borderColor:number=0x000000;
-    borderAlpha:number=0;
+    borderAlpha:number=1;
+    fontColor:number=0x000000;
+    fontSize:number=14;
 
     constructor(id:string){
         this.id=id;

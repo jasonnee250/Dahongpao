@@ -23,7 +23,8 @@
     "paths": {
       "@/*":["./src/*"]
     },
-    "types": ["node"]
+    "types": ["node"],
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules"],

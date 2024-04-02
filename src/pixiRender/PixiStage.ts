@@ -12,6 +12,7 @@ export class PixiStage {
     }
 
     public init(element: HTMLElement): void {
+        const ratio=1;//window.devicePixelRatio||1;
         this.app = new Application({
             background: "#ffffff",
             antialias: true,
@@ -19,9 +20,9 @@ export class PixiStage {
         });
         element.appendChild(this.app!.view as HTMLCanvasElement);
         console.log("begin draw stage", element.clientWidth, element.clientHeight);
-        this.app!.renderer.resize(element.clientWidth, element.clientHeight);
+        this.app!.renderer.resize(element.clientWidth/ratio, element.clientHeight/ratio);
+        this.container.scale={x:1/ratio,y:1/ratio};
         this.app!.stage.addChild(this.container);
-
     }
 
     public clear():void{

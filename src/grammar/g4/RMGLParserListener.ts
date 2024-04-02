@@ -6,9 +6,13 @@ import {ParseTreeListener} from "antlr4";
 import { StatementContext } from "./RMGLParser";
 import { VariableNameContext } from "./RMGLParser";
 import { CharTextContext } from "./RMGLParser";
+import { AnnotationTextContext } from "./RMGLParser";
+import { LineAnnotationTextContext } from "./RMGLParser";
 import { LineGraphicDefineContext } from "./RMGLParser";
 import { GraphicTypeContext } from "./RMGLParser";
 import { PropertyDefineContext } from "./RMGLParser";
+import { TextDefineContext } from "./RMGLParser";
+import { AnnotationDefineContext } from "./RMGLParser";
 
 
 /**
@@ -47,6 +51,26 @@ export default class RMGLParserListener extends ParseTreeListener {
 	 */
 	exitCharText?: (ctx: CharTextContext) => void;
 	/**
+	 * Enter a parse tree produced by `RMGLParser.annotationText`.
+	 * @param ctx the parse tree
+	 */
+	enterAnnotationText?: (ctx: AnnotationTextContext) => void;
+	/**
+	 * Exit a parse tree produced by `RMGLParser.annotationText`.
+	 * @param ctx the parse tree
+	 */
+	exitAnnotationText?: (ctx: AnnotationTextContext) => void;
+	/**
+	 * Enter a parse tree produced by `RMGLParser.lineAnnotationText`.
+	 * @param ctx the parse tree
+	 */
+	enterLineAnnotationText?: (ctx: LineAnnotationTextContext) => void;
+	/**
+	 * Exit a parse tree produced by `RMGLParser.lineAnnotationText`.
+	 * @param ctx the parse tree
+	 */
+	exitLineAnnotationText?: (ctx: LineAnnotationTextContext) => void;
+	/**
 	 * Enter a parse tree produced by `RMGLParser.lineGraphicDefine`.
 	 * @param ctx the parse tree
 	 */
@@ -76,5 +100,25 @@ export default class RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitPropertyDefine?: (ctx: PropertyDefineContext) => void;
+	/**
+	 * Enter a parse tree produced by `RMGLParser.textDefine`.
+	 * @param ctx the parse tree
+	 */
+	enterTextDefine?: (ctx: TextDefineContext) => void;
+	/**
+	 * Exit a parse tree produced by `RMGLParser.textDefine`.
+	 * @param ctx the parse tree
+	 */
+	exitTextDefine?: (ctx: TextDefineContext) => void;
+	/**
+	 * Enter a parse tree produced by `RMGLParser.annotationDefine`.
+	 * @param ctx the parse tree
+	 */
+	enterAnnotationDefine?: (ctx: AnnotationDefineContext) => void;
+	/**
+	 * Exit a parse tree produced by `RMGLParser.annotationDefine`.
+	 * @param ctx the parse tree
+	 */
+	exitAnnotationDefine?: (ctx: AnnotationDefineContext) => void;
 }
 

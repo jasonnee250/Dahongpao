@@ -4,13 +4,16 @@ options {
     tokenVocab = RMGLLexer;
 }
 
-statement:lineGraphicDefine+;
+statement:NL* (lineGraphicDefine|annotationDefine)+;
 
 //common
 variableName: TokenChar;
 charText: TokenChar;
-
+annotationText:AnnotationChar*;
+lineAnnotationText:LineAnnotationChar*;
 //line graphic define
-lineGraphicDefine: graphicType (variableName Comma)* variableName  propertyDefine* NL*;
+lineGraphicDefine: graphicType (variableName Comma)* variableName  (propertyDefine|textDefine)* NL*;
 graphicType: Rect|Circle;
-propertyDefine:(X|Y|W|H|Angle|Color|Text|Alpha|BorderColor|BorderWidth|BorderAlpha) charText (Comma|Semicolon);
+propertyDefine:(X|Y|W|H|Angle|Color|Alpha|BorderColor|BorderWidth|BorderAlpha|FontSize|FontColor) charText (Comma|Semicolon);
+textDefine:Text Quotation annotationText AnnotationQuotation  (Comma|Semicolon);
+annotationDefine: Slash lineAnnotationText LineAnnotationNL NL*;
