@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {ExampleApp} from "@/pixiRender/ExampleApp.tsx";
+import {ExampleApp} from "@/canvasRender/ExampleApp.tsx";
 
 function App() {
 
