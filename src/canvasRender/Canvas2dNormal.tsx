@@ -7,10 +7,11 @@ export const Canvas2dNormal = () => {
     const canvasRef=useRef(null);
 
     const resizeCanvas=()=>{
+        const ratio=window.devicePixelRatio;
         // @ts-ignore
-        canvasRef.current.width=window.innerWidth;
+        canvasRef.current.width=ratio*canvasRef.current.clientWidth;
         // @ts-ignore
-        canvasRef.current.height=window.innerHeight;
+        canvasRef.current.height=ratio*canvasRef.current.clientHeight;
     }
 
     useEffect(() => {

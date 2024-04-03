@@ -32,3 +32,21 @@ Rect a x 0,y 0,w 100,h 50,color 0xCCCCCC;
 Rect a,b,c x 0,y 0,w 100,h 50,color 0xCCCCCC;
 ```
 上述描述表示创建了三个矩形，位置坐标都是(0,0),宽度为100，高度为50，颜色为0xCCCCCC;
+
+## 1.2 描述连接关系
+```java
+a --> b
+```
+上面表示a和b以直线相连接，箭头指向b；
+```java
+a -line-> b
+```
+上面表示方式和 <p>a --> b</p> 相同，表示a和b以直线相连接，箭头指向b；
+```java
+a -poly-> b
+```
+上面表示a和b以折线相连接，箭头指向b；
+```java
+a -curve-> b
+```
+上面表示a和b以曲线相连接，箭头指向b；

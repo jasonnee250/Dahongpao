@@ -4,6 +4,15 @@ lexer grammar RMGLLexer;
 Rect: 'Rect';
 Circle:'Circle';
 
+//连线
+Line: '--';
+SimpleLine:'-line-';
+PolyLine:'-poly-';
+CurveLine:'-curve-';
+//箭头
+LArrow:'<';
+RArrow:'>';
+
 //属性关键字
 X:'x';
 Y:'y';

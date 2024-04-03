@@ -16,3 +16,7 @@ Rect BusinessLogic x 300, y 100, w 120, h 30, text "业务逻辑", color 0xCD853
 // 定义用户界面
 Rect UserInterface x 300, y 300, w 120, h 30, text "用户界面", color 0x800080, borderWidth 1;
 
+View -- Model;
+DataInterface -poly-> Model;
+BusinessLogic <-line- UserInterface;
+

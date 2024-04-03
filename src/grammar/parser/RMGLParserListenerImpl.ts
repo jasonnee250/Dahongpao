@@ -1,7 +1,8 @@
-import {GraphicNode, GraphicNodeType} from '@/entity/graphic'
+import {GraphicNode, GraphicNodeType, GraphLineType, GraphLinkLine} from '@/entity/graphic'
 import {
     GraphicTypeContext,
     LineGraphicDefineContext,
+    LinkDefineContext,
     PropertyDefineContext,
     StatementContext,
     TextDefineContext
@@ -12,10 +13,12 @@ import RMGLParserListener from "../g4/RMGLParserListener.ts";
 export class RMGLParserListenerImpl extends RMGLParserListener {
 
     nodeMap: Map<string, GraphicNode> = new Map();
+    linkMap: Map<string, GraphLinkLine> = new Map();
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     enterStatement = (_ctx: StatementContext) => {
         this.nodeMap.clear();
+        this.linkMap.clear();
     }
 
     enterLineGraphicDefine = (ctx: LineGraphicDefineContext) => {
@@ -25,9 +28,31 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
             node.type = this.graphicType(ctx.graphicType());
             //属性
             this.propertyList(node, ctx.propertyDefine_list());
-            this.textDefine(node,ctx.textDefine_list());
+            this.textDefine(node, ctx.textDefine_list());
             this.nodeMap.set(node.id, node);
         }
+    }
+
+    enterLinkDefine = (ctx: LinkDefineContext) => {
+        const tokenList = ctx.TokenChar_list();
+        if (tokenList.length !== 2) {
+            return;
+        }
+        const startId = tokenList[0].getText();
+        const endId = tokenList[1].getText();
+        const linkLine = new GraphLinkLine(startId + '-' + endId);
+        if (ctx.SimpleLine()) {
+            linkLine.type = GraphLineType.Line;
+        } else if (ctx.Line()) {
+            linkLine.type = GraphLineType.Line;
+        } else if (ctx.PolyLine()) {
+            linkLine.type = GraphLineType.PolyLine;
+        } else if (ctx.CurveLine()) {
+            linkLine.type = GraphLineType.Curve;
+        }
+        linkLine.start = startId;
+        linkLine.end = endId;
+        this.linkMap.set(linkLine.id, linkLine);
     }
 
     private graphicType(typeCtx: GraphicTypeContext): GraphicNodeType {
@@ -40,10 +65,10 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
         return GraphicNodeType.Rect;
     }
 
-    private textDefine(node: GraphicNode, ctx:TextDefineContext[]){
-        for(const property of ctx){
-            if(property.annotationText()){
-                node.text=property.annotationText().getText();
+    private textDefine(node: GraphicNode, ctx: TextDefineContext[]) {
+        for (const property of ctx) {
+            if (property.annotationText()) {
+                node.text = property.annotationText().getText();
             }
         }
     }

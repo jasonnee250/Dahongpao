@@ -13,6 +13,7 @@ import { GraphicTypeContext } from "./RMGLParser";
 import { PropertyDefineContext } from "./RMGLParser";
 import { TextDefineContext } from "./RMGLParser";
 import { AnnotationDefineContext } from "./RMGLParser";
+import { LinkDefineContext } from "./RMGLParser";
 
 
 /**
@@ -120,5 +121,15 @@ export default class RMGLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitAnnotationDefine?: (ctx: AnnotationDefineContext) => void;
+	/**
+	 * Enter a parse tree produced by `RMGLParser.linkDefine`.
+	 * @param ctx the parse tree
+	 */
+	enterLinkDefine?: (ctx: LinkDefineContext) => void;
+	/**
+	 * Exit a parse tree produced by `RMGLParser.linkDefine`.
+	 * @param ctx the parse tree
+	 */
+	exitLinkDefine?: (ctx: LinkDefineContext) => void;
 }
 
