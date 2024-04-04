@@ -2,8 +2,6 @@ import {GraphicLanguageParser} from "@/grammar/parser/GraphicLanguageParser.ts";
 import {CanvasStage} from "@/canvasRender/CanvasStage.ts";
 import {CanvasGraphicNode} from "@/canvasRender/CanvasGraphicNode.ts";
 import {
-    GMLApp,
-    GMLData,
     GraphicNode,
     GraphLineType,
     GraphLinkLine,
@@ -17,6 +15,7 @@ import {CanvasPolyLine, CanvasSimpleLine} from "@/canvasRender/CanvasGraphicLine
 import {LineLayout} from "@/layout/LineLayout.ts";
 import {PolyLineLayout} from "@/layout/PolyLineLayout.ts";
 import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
+import {GMLApp, GMLData} from "@/entity/GMLApp.ts";
 
 /**
  * 主管渲染的GMLApp
@@ -67,7 +66,7 @@ export class CanvasGMLApp implements GMLApp {
         return null;
     }
 
-    parse(text: string): GMLData {
+    parse2GMLData(text: string): GMLData {
         this.parser.parseString(text);
         const nodeMap=this.parser.listener.nodeMap;
         const linkMap=this.parser.listener.linkMap;
@@ -116,6 +115,22 @@ export class CanvasGMLApp implements GMLApp {
         for (const [_, node] of lineMap) {
             node.draw();
         }
+    }
+
+    scale(sx:number,sy:number):void{
+        this.globalTransform.a*=sx;
+        this.globalTransform.d*=sy;
+    }
+
+    translation(dx:number,dy:number):void{
+        this.globalTransform.e*=dx;
+        this.globalTransform.f*=dy;
+    }
+
+    resetTransform():void{
+        this.globalTransform=new TransformMatrix();
+        this.globalTransform.a = window.devicePixelRatio;
+        this.globalTransform.d = window.devicePixelRatio;
     }
 
 }

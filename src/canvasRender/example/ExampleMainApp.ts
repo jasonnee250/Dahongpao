@@ -46,7 +46,7 @@ export class ExampleMainApp {
         if(text===""){
             return;
         }
-        const {lineMap,linkMap,nodeMap}=this.gmlApp.parse(text);
+        const {lineMap,linkMap,nodeMap}=this.gmlApp.parse2GMLData(text);
         this.nodeMap=nodeMap;
         this.lineMap=lineMap;
         this.linkMap=linkMap;
@@ -99,5 +99,9 @@ export class ExampleMainApp {
         this.relatedLinks.clear();
         this.lastPos.x=0;
         this.lastPos.y=0;
+    }
+
+    redraw(){
+        this.gmlApp.drawData(this.nodeMap,this.lineMap);
     }
 }

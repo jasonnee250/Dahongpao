@@ -18,6 +18,14 @@ export class Point{
         this.y=y;
     }
 }
+export class TransformMatrix{
+    a:number=1;
+    b:number=0;
+    c:number=0;
+    d:number=1;
+    e:number=0;
+    f:number=0;
+}
 
 export class GraphicNode{
     type:GraphicNodeType=GraphicNodeType.Rect;
@@ -82,30 +90,7 @@ export class SimpleLine extends IGraphicLine{
     draw() {}
 }
 
-export class TransformMatrix{
-    a:number=1;
-    b:number=0;
-    c:number=0;
-    d:number=1;
-    e:number=0;
-    f:number=0;
-}
-
-export interface GMLData{
-    nodeMap: Map<string, GraphicNode>;
-    linkMap:Map<string,GraphLinkLine>;
-    lineMap:Map<string,IGraphicLine>;
-}
-
 export abstract class ILineLayout{
     abstract type:GraphLineType;
     abstract layout(nodeMap:Map<string,GraphicNode>,linkLine:GraphLinkLine):IGraphicLine|null;
-}
-
-export interface GMLApp{
-    init(element: HTMLElement):void;
-    reset():void;
-    draw(text:string):void;
-    drawData(nodeMap: Map<string, GraphicNode>, lineMap: Map<string, IGraphicLine>):void;
-    layoutLine(nodeMap:Map<string,GraphicNode>, linkLine:GraphLinkLine):IGraphicLine|null
 }

@@ -23,7 +23,20 @@ export const ExampleApp=()=>{
         const editZone=htmlDom[0] as HTMLTextAreaElement;
         mainApp.parse(editZone.value);
     }
+
+    const zoomIn=()=>{
+        mainApp.gmlApp.scale(1.1,1.1);
+        mainApp.redraw();
+    }
+
+    const zoomOut=()=>{
+        mainApp.gmlApp.scale(1/1.1,1/1.1);
+        mainApp.redraw();
+    }
+
     buttons.push({click:parse,buttonName:"Draw"});
+    buttons.push({click:zoomIn,buttonName:"ZoomIn"});
+    buttons.push({click:zoomOut,buttonName:"ZoomOut"});
 
     return (
         <div className="container">
