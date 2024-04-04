@@ -22,6 +22,7 @@ export class PixiGraphicNode extends GraphicNode{
         this.textGraphics=new Text();
     }
     public draw(){
+        this.g.clear();
         this.g.beginFill(this.color,this.alpha);
         this.g.lineStyle(this.borderWidth,this.borderColor,this.borderAlpha);
         if(this.type==GraphicNodeType.Rect){

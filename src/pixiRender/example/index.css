@@ -1,0 +1,25 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: row;
+
+    .edit-panel{
+        width: auto;
+        height: 100%;
+        background: #bcbcbc;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        flex-direction: column;
+        padding-bottom: 5px;
+        padding-top: 10px;
+    }
+
+}

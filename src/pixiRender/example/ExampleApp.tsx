@@ -1,9 +1,10 @@
 import {SimpleEditZone} from "@/component/editZone/SimpleEditZone.tsx";
-import {Canvas2dNormal} from "@/canvasRender/Canvas2dNormal.tsx";
-import {useEffect} from "react";
-import {ExampleMainApp} from "@/canvasRender/example/ExampleMainApp.ts";
+import {PixiCanvas} from "@/pixiRender/PixiCanvas.tsx";
 import {ButtonGroup, ButtonProp} from "@/component/buttonGroup";
-import './index.css'
+import {ExampleMainApp} from "@/pixiRender/example/ExampleMainApp.ts";
+import "./index.css"
+import {useEffect} from "react";
+
 export const ExampleApp=()=>{
 
     const mainApp=new ExampleMainApp();
@@ -15,7 +16,6 @@ export const ExampleApp=()=>{
         }
 
     }, []);
-
     const parse=()=>{
         const htmlDom=document.getElementsByClassName("edit-zone");
         const editZone=htmlDom[0] as HTMLTextAreaElement;
@@ -31,10 +31,17 @@ export const ExampleApp=()=>{
         mainApp.gmlApp.scale(1/1.1,1/1.1);
         mainApp.redraw();
     }
+
+    const translation=()=>{
+        mainApp.gmlApp.translation(10,0);
+        mainApp.redraw();
+    }
     const buttons:ButtonProp[]=[];
     buttons.push({click:parse,buttonName:"Draw"});
     buttons.push({click:zoomIn,buttonName:"ZoomIn"});
     buttons.push({click:zoomOut,buttonName:"ZoomOut"});
+    buttons.push({click:translation,buttonName:"scroll"});
+
 
     return (
         <div className="container">
@@ -42,7 +49,7 @@ export const ExampleApp=()=>{
                 <ButtonGroup buttons={buttons}/>
                 <SimpleEditZone/>
             </div>
-            <Canvas2dNormal/>
+            <PixiCanvas gmlApp={mainApp.gmlApp}/>
         </div>
     );
 }

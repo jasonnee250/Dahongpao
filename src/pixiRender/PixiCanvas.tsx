@@ -4,29 +4,34 @@ import './index.css';
 
 const CANVAS_ID = "main-app-canvas";
 
-interface CanvasProps{
+interface CanvasProps {
     gmlApp: PixiGMLApp;
 }
-export const PixiCanvas=({gmlApp}:CanvasProps)=>{
+
+export const PixiCanvas = ({gmlApp}: CanvasProps) => {
     const canvasRef = useRef(null);
+
+    const resizeCanvas = () => {
+        const ratio = window.devicePixelRatio;
+        console.log(
+            "begin draw stage=",
+            canvasRef.current!.clientWidth,
+            canvasRef.current!.clientHeight,
+        );
+        // @ts-ignore
+        gmlApp.stage.app!.renderer.resize(canvasRef.current!.clientWidth / ratio, canvasRef.current!.clientHeight / ratio);
+    }
+
     useEffect(() => {
 
-        const element = document.getElementById(CANVAS_ID);
-        if (element && gmlApp.stage.app==null) {
-            gmlApp.init(canvasRef.current!);
-            console.log(
-                "begin draw stage=",
-                element.clientWidth,
-                element.clientHeight,
-            );
-            gmlApp.stage.app!.renderer.resize(
-                element.clientWidth,
-                element.clientHeight,
-            );
-        }
+        gmlApp.init(canvasRef.current!);
+        resizeCanvas();
+        window.addEventListener("resize",resizeCanvas,false);
 
         return () => {
-            // gmlApp?.stage.destroy();
+            gmlApp?.stage.destroy();
+            window.removeEventListener("resize",resizeCanvas,false);
+
         }
 
     }, [canvasRef]);

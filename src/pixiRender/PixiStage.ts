@@ -12,7 +12,7 @@ export class PixiStage {
     }
 
     public init(element: HTMLElement): void {
-        const ratio=1;//window.devicePixelRatio||1;
+        const ratio=window.devicePixelRatio;
         this.app = new Application({
             background: "#ffffff",
             antialias: true,
