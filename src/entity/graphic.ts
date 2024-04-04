@@ -91,6 +91,12 @@ export class TransformMatrix{
     f:number=0;
 }
 
+export interface GMLData{
+    nodeMap: Map<string, GraphicNode>;
+    linkMap:Map<string,GraphLinkLine>;
+    lineMap:Map<string,IGraphicLine>;
+}
+
 export abstract class ILineLayout{
     abstract type:GraphLineType;
     abstract layout(nodeMap:Map<string,GraphicNode>,linkLine:GraphLinkLine):IGraphicLine|null;
@@ -98,5 +104,8 @@ export abstract class ILineLayout{
 
 export interface GMLApp{
     init(element: HTMLElement):void;
+    reset():void;
     draw(text:string):void;
+    drawData(nodeMap: Map<string, GraphicNode>, lineMap: Map<string, IGraphicLine>):void;
+    layoutLine(nodeMap:Map<string,GraphicNode>, linkLine:GraphLinkLine):IGraphicLine|null
 }

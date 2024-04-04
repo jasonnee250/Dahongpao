@@ -11,7 +11,7 @@ export class LineLayout extends ILineLayout {
         if (!start || !end) {
             return null;
         }
-        const line = new SimpleLine(start + '-' + end);
+        const line = new SimpleLine(linkLine.id);
         const startPoint = GraphicUtils.centerPoint(start);
         const endPoint = GraphicUtils.centerPoint(end);
         const dx = startPoint.x - endPoint.x;

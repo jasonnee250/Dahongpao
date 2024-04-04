@@ -37,14 +37,19 @@ export class GraphicUtils {
         }
     }
 
-    static middleInsertPoint(start:Point,end:Point,points:Point[]){
-        const p1=new Point(start.x,end.y);
-        points.push(start,p1,end);
+    static middleInsertPoint(start: Point, end: Point, points: Point[]) {
+        const p1 = new Point(start.x, end.y);
+        points.push(start, p1, end);
     }
-    static doubleMiddleInsertPoint(start:Point,end:Point,points:Point[]){
-        const p1=new Point(0.5*(start.x+end.x),start.y);
-        const p2=new Point(0.5*(start.x+end.x),end.y);
-        points.push(start,p1,p2,end);
+
+    static doubleMiddleInsertPoint(start: Point, end: Point, points: Point[]) {
+        const p1 = new Point(0.5 * (start.x + end.x), start.y);
+        const p2 = new Point(0.5 * (start.x + end.x), end.y);
+        points.push(start, p1, p2, end);
+    }
+
+    static rectContains(point: Point, node: GraphicNode): boolean {
+        return point.x > node.x && point.x < node.x + node.w && point.y > node.y && point.y < node.y + node.h;
     }
 
 }

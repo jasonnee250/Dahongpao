@@ -1,0 +1,29 @@
+.button-group {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: row;
+    padding: 10px;
+
+    .button {
+        width: auto;
+        height: auto;
+        font-size: 10px;
+        font-weight: bold;
+        margin-left: 5px;
+        margin-right: 5px;
+
+        &:hover{
+            background-color: #d7e1ec;
+        }
+        &:active{
+            background-color: #63a5ef;
+        }
+        &:focus{
+            outline: none;
+        }
+
+    }
+}
