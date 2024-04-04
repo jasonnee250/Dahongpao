@@ -1,6 +1,5 @@
 {
-  "name": "Dahongpao",
-  "private": true,
+  "name": "dahongpao",
   "version": "0.0.0-alpha",
   "type": "module",
   "scripts": {
