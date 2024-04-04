@@ -27,6 +27,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
-  "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules","./src/grammar/g4/*"],
 }
