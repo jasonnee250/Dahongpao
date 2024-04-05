@@ -1,7 +1,7 @@
 import {CanvasGMLApp} from "@/canvasRender/CanvasGMLApp.ts";
 import {GraphicNode, GraphLinkLine, IGraphicLine, Point} from "@/entity/graphic.ts";
 import {GraphicUtils} from "@/entity/GraphicUtils.ts";
-
+import {debounce} from "lodash";
 export class ExampleMainApp {
     gmlApp: CanvasGMLApp;//渲染
     nodeMap: Map<string, GraphicNode>;
@@ -36,12 +36,14 @@ export class ExampleMainApp {
         document.addEventListener("pointerdown", this.onPointerDown);
         document.addEventListener("pointermove", this.onPointerMove);
         document.addEventListener("pointerup", this.onPointerUp);
+        document.addEventListener("wheel",this.onWheel,{passive:false});
     }
 
     stop(): void {
         document.removeEventListener("pointerdown", this.onPointerDown);
         document.removeEventListener("pointermove", this.onPointerMove);
         document.removeEventListener("pointerup", this.onPointerUp);
+        document.removeEventListener("wheel",this.onWheel);
     }
 
     parse(text: string): void {
@@ -65,6 +67,22 @@ export class ExampleMainApp {
                 this.relatedLinks.add(link);
             }
         }
+    }
+    onWheel=(event:WheelEvent)=>{
+        if(event.target === this.gmlApp.canvas){
+            event.preventDefault();
+        }
+        if(event.ctrlKey){
+            const delta=Math.abs(event.deltaY)/100;
+            const scale=event.deltaY>0?(1-delta):(1+delta);
+            this.gmlApp.scale(scale,scale);
+            this.redraw();
+            //缩放
+            return;
+        }
+        //平移
+        this.gmlApp.translation(-event.deltaX,-event.deltaY);
+        this.redraw();
     }
 
     onPointerDown = (event: PointerEvent) => {

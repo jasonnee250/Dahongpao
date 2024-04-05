@@ -131,8 +131,8 @@ export class CanvasGMLApp implements GMLApp {
     }
 
     translation(dx:number,dy:number):void{
-        this.globalTransform.e*=dx;
-        this.globalTransform.f*=dy;
+        this.globalTransform.e+=dx;
+        this.globalTransform.f+=dy;
     }
 
     resetTransform():void{

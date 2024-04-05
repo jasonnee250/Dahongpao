@@ -31,10 +31,17 @@ export const ExampleApp=()=>{
         mainApp.gmlApp.scale(1/1.1,1/1.1);
         mainApp.redraw();
     }
+
+    const reset=()=>{
+        mainApp.gmlApp.resetTransform();
+        mainApp.redraw();
+    }
     const buttons:ButtonProp[]=[];
     buttons.push({click:parse,buttonName:"Draw"});
     buttons.push({click:zoomIn,buttonName:"ZoomIn"});
     buttons.push({click:zoomOut,buttonName:"ZoomOut"});
+    buttons.push({click:reset,buttonName:"Reset"});
+
 
     return (
         <div className="container">
