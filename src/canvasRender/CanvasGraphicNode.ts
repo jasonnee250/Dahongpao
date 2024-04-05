@@ -1,10 +1,11 @@
 import {GraphicNode, GraphicNodeType} from "@/entity/graphic.ts";
-import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
 
 export class CanvasGraphicNode extends GraphicNode{
 
-    static copyFrom(node:GraphicNode):CanvasGraphicNode{
-        const graphNode=new CanvasGraphicNode(node.id);
+    graphicContext:CanvasRenderingContext2D;
+
+    static copyFrom(node:GraphicNode,ctx:CanvasRenderingContext2D):CanvasGraphicNode{
+        const graphNode=new CanvasGraphicNode(node.id,ctx);
         const keys=Object.keys(node);
         for(const key of keys){
             // @ts-ignore
@@ -13,19 +14,18 @@ export class CanvasGraphicNode extends GraphicNode{
         return graphNode;
     }
 
-    constructor(id:string) {
+    constructor(id:string,ctx:CanvasRenderingContext2D) {
         super(id);
+        this.graphicContext=ctx;
     }
 
     draw():void{
-        const canvas=document.getElementById(NORMAL_CANVAS_ID) as HTMLCanvasElement;
-        const ctx=canvas.getContext("2d");
         if(this.type===GraphicNodeType.Rect){
-            this.drawRect(ctx!);
+            this.drawRect(this.graphicContext);
         }else if(this.type===GraphicNodeType.Circle){
-            this.drawCircle(ctx!);
+            this.drawCircle(this.graphicContext);
         }
-        this.drawText(ctx!);
+        this.drawText(this.graphicContext);
     }
 
     drawRect(ctx:CanvasRenderingContext2D){

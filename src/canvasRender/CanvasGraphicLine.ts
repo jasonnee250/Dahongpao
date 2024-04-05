@@ -1,10 +1,11 @@
 import {PolyLine, SimpleLine} from "@/entity/graphic.ts";
-import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
 
 export class CanvasSimpleLine extends SimpleLine {
 
-    static copyFrom(node: SimpleLine): CanvasSimpleLine {
-        const graphNode = new CanvasSimpleLine(node.id);
+    graphicContext: CanvasRenderingContext2D;
+
+    static copyFrom(node: SimpleLine, graphicContext: CanvasRenderingContext2D): CanvasSimpleLine {
+        const graphNode = new CanvasSimpleLine(node.id, graphicContext);
         const keys = Object.keys(node);
         for (const key of keys) {
             // @ts-ignore
@@ -13,9 +14,13 @@ export class CanvasSimpleLine extends SimpleLine {
         return graphNode;
     }
 
+    constructor(id: string, graphicContext: CanvasRenderingContext2D) {
+        super(id);
+        this.graphicContext = graphicContext;
+    }
+
     draw() {
-        const canvas = document.getElementById(NORMAL_CANVAS_ID) as HTMLCanvasElement;
-        const ctx = canvas.getContext("2d")!;
+        const ctx=this.graphicContext;
         ctx.beginPath();
         ctx.strokeStyle = '#' + this.color.toString(16);
         ctx.globalAlpha = this.alpha;
@@ -28,8 +33,9 @@ export class CanvasSimpleLine extends SimpleLine {
 
 export class CanvasPolyLine extends PolyLine {
 
-    static copyFrom(node: PolyLine): CanvasPolyLine {
-        const graphNode = new CanvasPolyLine(node.id);
+    graphicContext: CanvasRenderingContext2D;
+    static copyFrom(node: PolyLine,graphicContext: CanvasRenderingContext2D): CanvasPolyLine {
+        const graphNode = new CanvasPolyLine(node.id,graphicContext);
         const keys = Object.keys(node);
         for (const key of keys) {
             // @ts-ignore
@@ -38,13 +44,16 @@ export class CanvasPolyLine extends PolyLine {
         return graphNode;
     }
 
+    constructor(id: string, graphicContext: CanvasRenderingContext2D) {
+        super(id);
+        this.graphicContext = graphicContext;
+    }
     draw() {
         if (this.points.length < 2) {
             return;
         }
         const start = this.points[0];
-        const canvas = document.getElementById(NORMAL_CANVAS_ID) as HTMLCanvasElement;
-        const ctx = canvas.getContext("2d")!;
+        const ctx=this.graphicContext;
         ctx.beginPath();
         ctx.strokeStyle = '#' + this.color.toString(16);
         ctx.globalAlpha = this.alpha;

@@ -17,6 +17,7 @@ import {PixiPolyLine, PixiSimpleLine} from "@/pixiRender/PixiGraphicLine.ts";
 
 export class PixiGMLApp implements GMLApp {
 
+    canvas:HTMLElement|null=null;
     parser: GraphicLanguageParser;
     stage: PixiStage;
     layoutMap: Map<GraphLineType, ILineLayout>;
@@ -32,6 +33,7 @@ export class PixiGMLApp implements GMLApp {
     }
 
     init(element: HTMLElement) {
+        this.canvas=element;
         this.stage.init(element);
     }
 

@@ -14,7 +14,6 @@ import {
 import {CanvasPolyLine, CanvasSimpleLine} from "@/canvasRender/CanvasGraphicLine.ts";
 import {LineLayout} from "@/layout/LineLayout.ts";
 import {PolyLineLayout} from "@/layout/PolyLineLayout.ts";
-import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
 import {GMLApp, GMLData} from "@/entity/GMLApp.ts";
 
 /**
@@ -26,6 +25,7 @@ export class CanvasGMLApp implements GMLApp {
     layoutMap: Map<GraphLineType, ILineLayout>;
 
     globalTransform: TransformMatrix = new TransformMatrix();
+    canvas:HTMLCanvasElement|null=null;
 
     constructor() {
         this.parser = new GraphicLanguageParser();
@@ -37,14 +37,18 @@ export class CanvasGMLApp implements GMLApp {
         this.globalTransform.d = window.devicePixelRatio;
     }
 
-    init(element: HTMLElement) {
+    init(element: HTMLCanvasElement) {
         this.stage.init(element);
+        this.canvas=element;
     }
 
     reset() {
         this.stage.clear();
-        const canvas = document.getElementById(NORMAL_CANVAS_ID) as HTMLCanvasElement;
-        const ctx = canvas.getContext("2d")!;
+        if(!this.canvas){
+            console.error("Error! The canvas is null!");
+            return;
+        }
+        const ctx = this.canvas.getContext("2d")!;
         const {a, b, c, d, e, f} = this.globalTransform;
         ctx.transform(a, b, c, d, e, f);
     }
@@ -58,22 +62,25 @@ export class CanvasGMLApp implements GMLApp {
         if (!line) {
             return null;
         }
+        const ctx=this.canvas!.getContext("2d");
         if (line instanceof SimpleLine) {
-            return CanvasSimpleLine.copyFrom(line);
+            return CanvasSimpleLine.copyFrom(line,ctx!);
         } else if (line instanceof PolyLine) {
-            return CanvasPolyLine.copyFrom(line);
+            return CanvasPolyLine.copyFrom(line,ctx!);
         }
         return null;
     }
 
     parse2GMLData(text: string): GMLData {
         this.parser.parseString(text);
+        const ctx=this.canvas!.getContext("2d");
+
         const nodeMap=this.parser.listener.nodeMap;
         const linkMap=this.parser.listener.linkMap;
         const lineMap=new Map<string,IGraphicLine>();
         const renderNodeMap=new Map<string,GraphicNode>();
         for (const [_, node] of nodeMap) {
-            const renderNode = CanvasGraphicNode.copyFrom(node);
+            const renderNode = CanvasGraphicNode.copyFrom(node,ctx!);
             renderNodeMap.set(renderNode.id,renderNode);
         }
         for (const [_, linkLine] of linkMap) {
@@ -92,11 +99,12 @@ export class CanvasGMLApp implements GMLApp {
     draw(text: string) {
         this.reset();
 
+        const ctx=this.canvas!.getContext("2d");
         this.parser.parseString(text);
         const nodeMap = this.parser.listener.nodeMap;
         const linkMap = this.parser.listener.linkMap;
         for (const [_, node] of nodeMap) {
-            const renderNode = CanvasGraphicNode.copyFrom(node);
+            const renderNode = CanvasGraphicNode.copyFrom(node,ctx!);
             renderNode.draw();
         }
         for (const [_, linkLine] of linkMap) {

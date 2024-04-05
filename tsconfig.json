@@ -1,17 +1,19 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -26,6 +28,8 @@
     "types": ["node"],
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
+  "include": [
+    "src/index.ts"
+  ],
   "exclude": ["node_modules","./src/grammar/g4/*"],
 }

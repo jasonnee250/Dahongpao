@@ -22,9 +22,9 @@ export class ExampleMainApp {
     }
 
     private getGlobalPoint(event: PointerEvent): Point {
-        const htmlDom = document.getElementsByClassName("left-zone");
-        const editZone = htmlDom[0];
-        const point = new Point(event.clientX - editZone.clientWidth, event.clientY);
+        const rect=this.gmlApp.canvas?.getBoundingClientRect()!;//document.getElementById(NORMAL_CANVAS_ID)!.getBoundingClientRect();
+
+        const point = new Point(event.clientX - rect.x, event.clientY-rect.y);
         point.x = point.x * window.devicePixelRatio;
         point.y = point.y * window.devicePixelRatio;
         const matrix = this.gmlApp.stage.container.worldTransform;

@@ -7,7 +7,8 @@ export interface GMLData{
     lineMap:Map<string,IGraphicLine>;
 }
 export interface GMLApp{
-    init(element: HTMLElement):void;
+    canvas:HTMLElement|null;
+    init(element: HTMLCanvasElement):void;
     reset():void;
     parse2GMLData(text:string):GMLData;
     draw(text:string):void;

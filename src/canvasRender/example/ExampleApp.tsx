@@ -42,7 +42,7 @@ export const ExampleApp=()=>{
                 <ButtonGroup buttons={buttons}/>
                 <SimpleEditZone/>
             </div>
-            <Canvas2dNormal/>
+            <Canvas2dNormal gmlApp={mainApp.gmlApp}/>
         </div>
     );
 }

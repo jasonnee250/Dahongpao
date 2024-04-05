@@ -1,8 +1,11 @@
-import {NORMAL_CANVAS_ID} from "@/canvasRender/constants.ts";
 import {useEffect, useRef} from "react";
 import './index.css'
+import {GMLApp} from "@/entity";
 
-export const Canvas2dNormal = () => {
+interface IProps{
+    gmlApp:GMLApp
+}
+export const Canvas2dNormal = ({gmlApp}:IProps) => {
 
     const canvasRef=useRef(null);
 
@@ -16,6 +19,7 @@ export const Canvas2dNormal = () => {
 
     useEffect(() => {
         resizeCanvas();
+        gmlApp.init(canvasRef.current!);
         window.addEventListener("resize",resizeCanvas,false);
         return ()=>{
             window.removeEventListener("resize",resizeCanvas,false);
@@ -23,6 +27,6 @@ export const Canvas2dNormal = () => {
     }, [canvasRef]);
 
     return <div className='normal-container'>
-        <canvas ref={canvasRef} id={NORMAL_CANVAS_ID} className='normal-canvas'></canvas>
+        <canvas ref={canvasRef} className='normal-canvas'></canvas>
     </div>
 }
