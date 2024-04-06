@@ -1,4 +1,5 @@
 import {GraphicNode, Point} from "@/entity/graphic.ts";
+import {AffineMatrix} from "@/math/AffineMatrix.ts";
 
 export class GraphicUtils {
 
@@ -50,6 +51,45 @@ export class GraphicUtils {
 
     static rectContains(point: Point, node: GraphicNode): boolean {
         return point.x > node.x && point.x < node.x + node.w && point.y > node.y && point.y < node.y + node.h;
+    }
+
+    static distance(a:Point,b:Point):number{
+        return Math.sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+    }
+
+    static lineAngle(a:Point,b:Point):number{
+        if(Math.abs(a.x-b.x)<1e-3){
+            return b.y>a.y? Math.PI*0.5:-Math.PI*0.5;
+        }
+        const k=(b.y-a.y)/(b.x-a.x);
+        let rad=Math.atan(k);
+        if(b.x<a.x){
+            rad+=Math.PI;
+        }
+        return rad;
+    }
+
+    static basicGetArrowPoint(start:Point,end:Point,p1:Point,p2:Point){
+        const lineAngle=GraphicUtils.lineAngle(start,end);
+        const m=AffineMatrix.generateMatrix()
+            .translate(start.x,start.y)
+            .rotate2(lineAngle);
+        const a=m.crossPoint(p1);
+        const b=m.crossPoint(p2);
+        return {a,b};
+    }
+
+    static getLArrowPoint(start:Point,end:Point,l:number=5){
+        const p1=new Point(Math.sqrt(3)*0.5*l,0.5*l);
+        const p2=new Point(Math.sqrt(3)*0.5*l,-0.5*l);
+        return GraphicUtils.basicGetArrowPoint(start,end,p1,p2);
+    }
+
+    static getRArrowPoint(start:Point,end:Point,l:number=5){
+        const distance=GraphicUtils.distance(start,end);
+        const p1=new Point(distance-Math.sqrt(3)*0.5*l,0.5*l);
+        const p2=new Point(distance-Math.sqrt(3)*0.5*l,-0.5*l);
+        return GraphicUtils.basicGetArrowPoint(start,end,p1,p2);
     }
 
 }

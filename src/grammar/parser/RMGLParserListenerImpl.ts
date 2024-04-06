@@ -1,4 +1,4 @@
-import {GraphicNode, GraphicNodeType, GraphLineType, GraphLinkLine} from '@/entity/graphic'
+import {GraphicNode, GraphicNodeType, GraphLineType, GraphLinkLine, LineArrowType} from '@/entity/graphic'
 import {
     GraphicTypeContext,
     LineGraphicDefineContext,
@@ -52,6 +52,12 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
         }
         linkLine.start = startId;
         linkLine.end = endId;
+        if(ctx.RArrow()){
+            linkLine.rArrow = LineArrowType.Arrow;
+        }
+        if(ctx.LArrow()){
+            linkLine.lArrow = LineArrowType.Arrow;
+        }
         this.linkMap.set(linkLine.id, linkLine);
     }
 

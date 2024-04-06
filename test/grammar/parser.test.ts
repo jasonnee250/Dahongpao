@@ -1,5 +1,5 @@
 import {describe,expect,test} from '@jest/globals'
-import {GraphicLanguageParser} from '../../src/grammar/parser/GraphicLanguageParser'
+import {GraphicLanguageParser} from '@/grammar/parser/GraphicLanguageParser'
 
 const t0="Rect a x 0,y 0,w 100,h 200,color 0xffffff;";
 

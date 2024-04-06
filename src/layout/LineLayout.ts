@@ -50,6 +50,9 @@ export class LineLayout extends ILineLayout {
             line.start=GraphicUtils.leftPoint(start);
             line.end=GraphicUtils.rightPoint(end);
         }
+        //属性
+        line.lArrow=linkLine.lArrow;
+        line.rArrow=linkLine.rArrow;
         return line;
     }
 

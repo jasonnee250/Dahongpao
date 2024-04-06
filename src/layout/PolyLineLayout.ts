@@ -51,6 +51,9 @@ export class PolyLineLayout extends ILineLayout {
             GraphicUtils.doubleMiddleInsertPoint(GraphicUtils.leftPoint(start), GraphicUtils.rightPoint(end), points);
         }
         line.points=points;
+        //属性
+        line.lArrow=linkLine.lArrow;
+        line.rArrow=linkLine.rArrow;
         return line;
     }
 

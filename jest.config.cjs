@@ -1,7 +1,7 @@
 const config = {
     verbose: true,
     moduleNameMapper: {
-        "@/(.*)$": "<rootDir>/src/$1"
+        "@/(.*)": "<rootDir>/src/$1"
     }
 };
 

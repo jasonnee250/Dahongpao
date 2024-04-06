@@ -10,6 +10,11 @@ export enum GraphLineType{
     Curve,
 }
 
+export enum LineArrowType{
+    None,
+    Arrow,
+}
+
 export class Point{
     x:number=0;
     y:number=0;
@@ -55,6 +60,8 @@ export class GraphLinkLine{
     id:string;
     start:string="";
     end:string="";
+    lArrow:LineArrowType=LineArrowType.None;
+    rArrow:LineArrowType=LineArrowType.None;
     type:GraphLineType=GraphLineType.PolyLine;
 
     constructor(id:string) {
@@ -69,6 +76,8 @@ export abstract class IGraphicLine {
     width:number=1;
     fontColor:number=0x000000;
     fontSize:number=14;
+    lArrow:LineArrowType=LineArrowType.None;
+    rArrow:LineArrowType=LineArrowType.None;
     constructor(id:string) {
         this.id=id;
     }
