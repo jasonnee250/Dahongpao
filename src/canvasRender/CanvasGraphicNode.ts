@@ -42,7 +42,7 @@ export class CanvasGraphicNode extends GraphicNode{
         ctx.fillStyle='#'+this.color.toString(16);
         ctx.globalAlpha=this.alpha;
         ctx.beginPath();
-        ctx.arc(this.x+0.5*this.w,this.y+0.5*this.h,0.25*(this.w+this.h),0,2*Math.PI,false);
+        ctx.ellipse(this.x+0.5*this.w,this.y+0.5*this.h,0.5*this.w,0.5*this.h,0,0,2*Math.PI,false);
         ctx.fill();
         ctx.strokeStyle='#'+this.borderColor.toString(16);
         ctx.lineWidth=this.borderWidth;
