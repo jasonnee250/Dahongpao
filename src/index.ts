@@ -2,5 +2,6 @@
 export * from "@/canvasRender";
 export * from "@/entity";
 export * from "@/pixiRender";
+export * from "@/math";
 
 
