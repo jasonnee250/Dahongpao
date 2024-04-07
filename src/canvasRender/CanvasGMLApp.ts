@@ -2,6 +2,7 @@ import {GraphicLanguageParser} from "@/grammar/parser/GraphicLanguageParser.ts";
 import {CanvasStage} from "@/canvasRender/CanvasStage.ts";
 import {CanvasGraphicNode} from "@/canvasRender/CanvasGraphicNode.ts";
 import {
+    CurveLine,
     GraphicNode,
     GraphLineType,
     GraphLinkLine,
@@ -11,10 +12,11 @@ import {
     SimpleLine,
     TransformMatrix
 } from "@/entity/graphic.ts";
-import {CanvasPolyLine, CanvasSimpleLine} from "@/canvasRender/CanvasGraphicLine.ts";
+import {CanvasCurveLine, CanvasPolyLine, CanvasSimpleLine} from "@/canvasRender/CanvasGraphicLine.ts";
 import {LineLayout} from "@/layout/LineLayout.ts";
 import {PolyLineLayout} from "@/layout/PolyLineLayout.ts";
 import {GMLApp, GMLData} from "@/entity/GMLApp.ts";
+import {CurveLineLayout} from "@/layout/CurveLineLayout.ts";
 
 /**
  * 主管渲染的GMLApp
@@ -33,6 +35,7 @@ export class CanvasGMLApp implements GMLApp {
         this.layoutMap = new Map<GraphLineType, ILineLayout>();
         this.layoutMap.set(GraphLineType.Line, new LineLayout());
         this.layoutMap.set(GraphLineType.PolyLine, new PolyLineLayout());
+        this.layoutMap.set(GraphLineType.Curve, new CurveLineLayout());
         this.globalTransform.a = window.devicePixelRatio;
         this.globalTransform.d = window.devicePixelRatio;
     }
@@ -67,6 +70,8 @@ export class CanvasGMLApp implements GMLApp {
             return CanvasSimpleLine.copyFrom(line,ctx!);
         } else if (line instanceof PolyLine) {
             return CanvasPolyLine.copyFrom(line,ctx!);
+        }else if (line instanceof CurveLine) {
+            return CanvasCurveLine.copyFrom(line,ctx!);
         }
         return null;
     }

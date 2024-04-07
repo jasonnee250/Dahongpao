@@ -22,7 +22,7 @@ export enum LineArrowType{
 export class Point{
     x:number=0;
     y:number=0;
-    constructor(x:number,y:number) {
+    constructor(x:number=0,y:number=0) {
         this.x=x;
         this.y=y;
     }
@@ -89,6 +89,13 @@ export abstract class IGraphicLine {
     abstract draw():void;
 
 }
+export class CurveLine extends IGraphicLine{
+
+    points:Point[]=[];
+    draw() {}
+
+}
+
 //折线
 export class PolyLine extends IGraphicLine{
     points:Point[]=[];

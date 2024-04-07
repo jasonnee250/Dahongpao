@@ -38,6 +38,31 @@ export class GraphicUtils {
         }
     }
 
+    static topLeft(node: GraphicNode): Point {
+        return {
+            x: node.x,
+            y: node.y,
+        }
+    }
+    static topRight(node: GraphicNode): Point {
+        return {
+            x: node.x+node.w,
+            y: node.y,
+        }
+    }
+    static bottomLeft(node: GraphicNode): Point {
+        return {
+            x: node.x,
+            y: node.y+node.h,
+        }
+    }
+    static bottomRight(node: GraphicNode): Point {
+        return {
+            x: node.x+node.w,
+            y: node.y+node.h,
+        }
+    }
+
     static middleInsertPoint(start: Point, end: Point, points: Point[]) {
         const p1 = new Point(start.x, end.y);
         points.push(start, p1, end);
