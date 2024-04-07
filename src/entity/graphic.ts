@@ -2,6 +2,10 @@
 export enum GraphicNodeType {
     Rect,
     Circle,
+    Diamond,
+    Parallelogram,
+    Trapezoid,
+    Triangle,
 }
 
 export enum GraphLineType{

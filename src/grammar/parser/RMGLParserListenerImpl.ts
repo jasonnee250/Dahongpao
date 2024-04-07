@@ -68,6 +68,18 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
         if (typeCtx.Circle()) {
             return GraphicNodeType.Circle;
         }
+        if (typeCtx.Diamond()) {
+            return GraphicNodeType.Diamond;
+        }
+        if (typeCtx.Parallelogram()) {
+            return GraphicNodeType.Parallelogram;
+        }
+        if (typeCtx.Trapezoid()) {
+            return GraphicNodeType.Trapezoid;
+        }
+        if (typeCtx.Triangle()) {
+            return GraphicNodeType.Triangle;
+        }
         return GraphicNodeType.Rect;
     }
 

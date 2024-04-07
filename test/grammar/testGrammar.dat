@@ -5,16 +5,16 @@ Rect ViewModel x 300, y 200, w 120, h 50, text "ViewModel", color 0x6495ED, bord
 Circle View x 500, y 100, w 100, h 40, text "View", color 0xFFD700, borderWidth 1;
 
 // 定义Model
-Rect Model x 100, y 100, w 100, h 40, text "Model", color 0x90EE90, borderWidth 1;
+Diamond Model x 100, y 100, w 100, h 40, text "Model", color 0x90EE90, borderWidth 1;
 
 // 定义数据接口
-Rect DataInterface x 100, y 200, w 120, h 30, text "数据接口", color 0x20B2AA, borderWidth 1;
+Parallelogram DataInterface x 100, y 200, w 120, h 30, text "数据接口", color 0x20B2AA, borderWidth 1;
 
 // 定义业务逻辑
-Rect BusinessLogic x 300, y 100, w 120, h 30, text "业务逻辑", color 0xCD853F, borderWidth 1;
+Trapezoid BusinessLogic x 300, y 100, w 120, h 30, text "业务逻辑", color 0xCD853F, borderWidth 1;
 
 // 定义用户界面
-Rect UserInterface x 300, y 300, w 120, h 30, text "用户界面", color 0x800080, borderWidth 1;
+Triangle UserInterface x 300, y 300, w 120, h 30, text "用户界面", color 0x800080, borderWidth 1;
 
 View -- Model;
 DataInterface -poly-> Model;

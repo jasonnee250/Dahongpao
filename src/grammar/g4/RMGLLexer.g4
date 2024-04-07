@@ -3,7 +3,10 @@ lexer grammar RMGLLexer;
 //关键字
 Rect: 'Rect';
 Circle:'Circle';
-
+Diamond:'Diamond';//菱形
+Parallelogram:'Parallelogram';//平行四边形
+Trapezoid:'Trapezoid';//梯形
+Triangle:'Triangle';//三角形
 //连线
 Line: '--';
 SimpleLine:'-line-';
