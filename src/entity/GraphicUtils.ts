@@ -1,4 +1,4 @@
-import {GraphicNode, Point} from "@/entity/graphic.ts";
+import {GraphicNode, GraphicNodeType, Point} from "@/entity/graphic.ts";
 import {AffineMatrix} from "@/math/AffineMatrix.ts";
 
 export class GraphicUtils {
@@ -18,6 +18,26 @@ export class GraphicUtils {
     }
 
     static rightPoint(node: GraphicNode): Point {
+        if(node.type===GraphicNodeType.Parallelogram){
+            const delta=0.2*node.w;
+            return {
+                x:node.x+node.w-0.5*delta,
+                y:node.y+0.5*node.h,
+            }
+        }
+        if(node.type===GraphicNodeType.Triangle){
+            return {
+                x:node.x+node.w-0.25*node.w,
+                y:node.y+0.5*node.h,
+            }
+        }
+        if(node.type===GraphicNodeType.Trapezoid){
+            const delta=0.2*node.w;
+            return {
+                x:node.x+node.w-0.5*delta,
+                y:node.y+0.5*node.h,
+            }
+        }
         return {
             x: node.x + node.w,
             y: node.y + 0.5 * node.h,
@@ -32,6 +52,26 @@ export class GraphicUtils {
     }
 
     static leftPoint(node: GraphicNode): Point {
+        if(node.type===GraphicNodeType.Parallelogram){
+            const delta=0.2*node.w;
+            return {
+                x:node.x+0.5*delta,
+                y:node.y+0.5*node.h,
+            }
+        }
+        if(node.type===GraphicNodeType.Triangle){
+            return {
+                x:node.x+0.25*node.w,
+                y:node.y+0.5*node.h,
+            }
+        }
+        if(node.type===GraphicNodeType.Trapezoid){
+            const delta=0.2*node.w;
+            return {
+                x:node.x+0.5*delta,
+                y:node.y+0.5*node.h,
+            }
+        }
         return {
             x: node.x,
             y: node.y + 0.5 * node.h,
