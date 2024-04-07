@@ -1,6 +1,6 @@
 {
   "name": "dahongpao",
-  "version": "0.0.0-alpha-5",
+  "version": "0.0.0-alpha-6",
   "main": "dist/dahongpao.umd.cjs",
   "module": "dist/dahongpao.mjs",
   "types": "dist/index.d.ts",
