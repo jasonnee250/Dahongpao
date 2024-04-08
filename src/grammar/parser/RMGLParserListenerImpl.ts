@@ -25,6 +25,7 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
         const variableNameList = ctx.variableName_list();
         for (const name of variableNameList) {
             const node = new GraphicNode(name.getText());
+            node.zIndex=this.nodeMap.size+this.linkMap.size;
             node.type = this.graphicType(ctx.graphicType());
             //属性
             this.propertyList(node, ctx.propertyDefine_list());
@@ -58,6 +59,7 @@ export class RMGLParserListenerImpl extends RMGLParserListener {
         if(ctx.LArrow()){
             linkLine.lArrow = LineArrowType.Arrow;
         }
+        linkLine.zIndex=this.nodeMap.size+this.linkMap.size;
         this.linkMap.set(linkLine.id, linkLine);
     }
 

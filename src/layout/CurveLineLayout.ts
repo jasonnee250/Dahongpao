@@ -6,7 +6,6 @@ import {
     IGraphicLine,
     ILineLayout,
     Point,
-    SimpleLine
 } from "@/entity/graphic.ts";
 import {GraphicUtils} from "@/entity/GraphicUtils.ts";
 
@@ -121,6 +120,7 @@ export class CurveLineLayout extends ILineLayout {
         //属性
         line.lArrow=linkLine.lArrow;
         line.rArrow=linkLine.rArrow;
+        line.zIndex=linkLine.zIndex;
         return line;
     }
 

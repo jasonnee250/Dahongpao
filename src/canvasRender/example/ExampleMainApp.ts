@@ -81,9 +81,9 @@ export class ExampleMainApp {
                 this.relatedLinks.add(link.id);
             }
         }
-        for(const link of this.relatedLinks){
-            const line=this.lineMap.get(link);
-            if(line){
+        for (const link of this.relatedLinks) {
+            const line = this.lineMap.get(link);
+            if (line) {
                 //r tree剔除
                 this.tree.remove(line.getTreeNode(), (a: TreeNode, b: TreeNode) => {
                     return a.id === b.id;
@@ -113,17 +113,32 @@ export class ExampleMainApp {
 
     onPointerDown = (event: PointerEvent) => {
         const globalPoint = this.getGlobalPoint(event);
-        for (const [_, node] of this.nodeMap) {
-            if (GraphicUtils.rectContains(globalPoint, node)) {
-                this.targetNode = node;
-                this.lastPos = globalPoint;
-                this.relatedLinkLine(this.targetNode);
-                //r tree剔除
-                this.tree.remove(node.getTreeNode(), (a: TreeNode, b: TreeNode) => {
-                    return a.id === b.id;
-                })
-                break;
+        const rect: TreeNode = {
+            id: "pointer",
+            minX: globalPoint.x,
+            minY: globalPoint.y,
+            maxX: globalPoint.x,
+            maxY: globalPoint.y
+        }
+        const res = this.tree.search(rect);
+
+        const nodeList: GraphicNode[] = [];
+        for (const treeNode of res) {
+            const node = this.nodeMap.get(treeNode.id);
+            if (node) {
+                nodeList.push(node);
             }
+        }
+        nodeList.sort((a, b) => a.zIndex - b.zIndex);
+        const target = nodeList.pop();
+        if (target) {
+            this.targetNode = target;
+            this.lastPos = globalPoint;
+            this.relatedLinkLine(this.targetNode);
+            //r tree剔除
+            this.tree.remove(target.getTreeNode(), (a: TreeNode, b: TreeNode) => {
+                return a.id === b.id;
+            })
         }
     }
     onPointerMove = (event: PointerEvent) => {
@@ -150,8 +165,8 @@ export class ExampleMainApp {
                 const bounds = prevLine.getTreeNode();
                 dirtyBounds.push(bounds);
             }
-            const linkLine=this.linkMap.get(link);
-            if(!linkLine){
+            const linkLine = this.linkMap.get(link);
+            if (!linkLine) {
                 continue;
             }
             const line = this.gmlApp.layoutLine(this.nodeMap, linkLine);
@@ -167,13 +182,13 @@ export class ExampleMainApp {
     }
 
     private dirtyDraw(bounds: TreeNode) {
-        const buffer = 0;
         //像素整数化处理
         const scale = this.gmlApp.globalTransform.a / 2;
-        bounds.minX = Math.round((bounds.minX - buffer) * scale) / scale;
-        bounds.minY = Math.round((bounds.minY - buffer) * scale) / scale;
-        bounds.maxX = Math.round((bounds.maxX + 2 * buffer) * scale) / scale;
-        bounds.maxY = Math.round((bounds.maxY + 2 * buffer) * scale) / scale;
+        const buffer = 2;
+        bounds.minX = Math.round((bounds.minX) * scale - buffer) / scale;
+        bounds.minY = Math.round((bounds.minY) * scale - buffer) / scale;
+        bounds.maxX = Math.round((bounds.maxX) * scale + 2 * buffer) / scale;
+        bounds.maxY = Math.round((bounds.maxY) * scale + 2 * buffer) / scale;
         const result = this.tree.search(bounds);
         const ctx = this.gmlApp.canvas!.getContext("2d")!;
         //清空；
@@ -194,14 +209,17 @@ export class ExampleMainApp {
                 graphicSet.add(line);
             }
         }
-        for(const lineId of this.relatedLinks){
+        for (const lineId of this.relatedLinks) {
             const line = this.lineMap.get(lineId);
             if (line) {
                 graphicSet.add(line);
             }
         }
         graphicSet.add(this.targetNode!);
-        for(const graphic of graphicSet){
+
+        const graphicList = [...graphicSet];
+        graphicList.sort((a, b) => a.zIndex - b.zIndex);
+        for (const graphic of graphicList) {
             graphic.draw();
         }
         ctx.restore();
@@ -212,9 +230,9 @@ export class ExampleMainApp {
             //r tree更新
             this.tree.insert(this.targetNode.getTreeNode());
         }
-        for(const link of this.relatedLinks){
-            const line=this.lineMap.get(link);
-            if(line){
+        for (const link of this.relatedLinks) {
+            const line = this.lineMap.get(link);
+            if (line) {
                 //r tree剔除
                 this.tree.insert(line.getTreeNode());
             }

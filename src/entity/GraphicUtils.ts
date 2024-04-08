@@ -157,7 +157,7 @@ export class GraphicUtils {
         return GraphicUtils.basicGetArrowPoint(start,end,p1,p2);
     }
 
-    static getBounds(nodes:TreeNode[]):TreeNode{
+    static getBounds(nodes:TreeNode[],id:string="getBounds"):TreeNode{
         const xList=[]
         const yList=[];
         for(const node of nodes){
@@ -165,7 +165,7 @@ export class GraphicUtils {
             yList.push(node.maxY,node.minY);
         }
         return {
-            id:"getBounds",
+            id,
             minX:Math.min(...xList),
             maxX:Math.max(...xList),
             minY:Math.min(...yList),

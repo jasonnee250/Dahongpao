@@ -1,6 +1,8 @@
 //类型
 import {GraphicUtils} from "@/entity/GraphicUtils.ts";
 
+export const DEFAULT_ARROW_LENGTH = 10;
+
 export enum GraphicNodeType {
     Rect,
     Circle,
@@ -48,11 +50,13 @@ export interface TreeNode {
     id: string;
 }
 
-export interface IGraphicElement{
+export interface IGraphicElement {
+    zIndex: number;
+
     draw(): void;
 }
 
-export class GraphicNode implements IGraphicElement{
+export class GraphicNode implements IGraphicElement {
     type: GraphicNodeType = GraphicNodeType.Rect;
     id: string;
     x: number = 0;
@@ -68,6 +72,7 @@ export class GraphicNode implements IGraphicElement{
     borderAlpha: number = 1;
     fontColor: number = 0x000000;
     fontSize: number = 14;
+    zIndex: number = 0;//用于层级排序
 
     constructor(id: string) {
         this.id = id;
@@ -94,13 +99,14 @@ export class GraphLinkLine {
     lArrow: LineArrowType = LineArrowType.None;
     rArrow: LineArrowType = LineArrowType.None;
     type: GraphLineType = GraphLineType.PolyLine;
+    zIndex:number=0;
 
     constructor(id: string) {
         this.id = id;
     }
 }
 
-export abstract class IGraphicLine implements IGraphicElement{
+export abstract class IGraphicLine implements IGraphicElement {
     id: string;
     color: number = 0x000000;
     alpha: number = 1;
@@ -109,6 +115,7 @@ export abstract class IGraphicLine implements IGraphicElement{
     fontSize: number = 14;
     lArrow: LineArrowType = LineArrowType.None;
     rArrow: LineArrowType = LineArrowType.None;
+    zIndex: number = 0;//用于层级排序
 
     constructor(id: string) {
         this.id = id;
@@ -165,7 +172,7 @@ export class SimpleLine extends IGraphicLine {
     draw() {
     }
 
-    getTreeNode(): TreeNode{
+    getTreeNode(): TreeNode {
         const bounds = GraphicUtils.getBoundsByPoints([this.start, this.end]);
         bounds.minX = bounds.minX - this.width;
         bounds.minY = bounds.minY - this.width;

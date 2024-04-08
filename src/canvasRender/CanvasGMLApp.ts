@@ -12,11 +12,13 @@ import {
     SimpleLine,
     TransformMatrix
 } from "@/entity/graphic.ts";
-import {CanvasCurveLine, CanvasPolyLine, CanvasSimpleLine} from "@/canvasRender/CanvasGraphicLine.ts";
 import {LineLayout} from "@/layout/LineLayout.ts";
 import {PolyLineLayout} from "@/layout/PolyLineLayout.ts";
 import {GMLApp, GMLData} from "@/entity/GMLApp.ts";
 import {CurveLineLayout} from "@/layout/CurveLineLayout.ts";
+import {CanvasCurveLine} from "@/canvasRender/line/CanvasCurveLine.ts";
+import {CanvasPolyLine} from "@/canvasRender/line/CanvasPolyLine.ts";
+import {CanvasSimpleLine} from "@/canvasRender/line/CanvasSimpleLine.ts";
 
 /**
  * 主管渲染的GMLApp

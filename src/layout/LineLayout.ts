@@ -53,6 +53,7 @@ export class LineLayout extends ILineLayout {
         //属性
         line.lArrow=linkLine.lArrow;
         line.rArrow=linkLine.rArrow;
+        line.zIndex=linkLine.zIndex;
         return line;
     }
 
