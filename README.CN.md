@@ -88,7 +88,7 @@ export default App
 生产示例图如下：
 ![img.png](assets/case.png)
 
-「大红袍」也提供了封装好的ExampleApp，包含了简单的交互，如拖动；可以直接导出使用，如下
+「大红袍」也提供了封装好的ExampleApp，包含了简单的交互，如拖动；可以直接导出使用，如下;
 ```typescript jsx
 import {ExampleApp} from "dahongpao";
 function App() {
@@ -100,7 +100,7 @@ function App() {
 }
 export default App
 ```
-
+[点击这里进行尝试](https://codesandbox.io/p/live/695b02c2-6294-40fe-9e33-4692248934af)
 ## 相关说明
 
 GML语言解析由[antlr4](https://github.com/antlr/antlr4)提供支持；
