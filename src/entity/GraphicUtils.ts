@@ -1,4 +1,4 @@
-import {GraphicNode, GraphicNodeType, Point} from "@/entity/graphic.ts";
+import {GraphicNode, GraphicNodeType, Point, TreeNode} from "@/entity/graphic.ts";
 import {AffineMatrix} from "@/math/AffineMatrix.ts";
 
 export class GraphicUtils {
@@ -155,6 +155,38 @@ export class GraphicUtils {
         const p1=new Point(distance-Math.sqrt(3)*0.5*l,0.5*l);
         const p2=new Point(distance-Math.sqrt(3)*0.5*l,-0.5*l);
         return GraphicUtils.basicGetArrowPoint(start,end,p1,p2);
+    }
+
+    static getBounds(nodes:TreeNode[]):TreeNode{
+        const xList=[]
+        const yList=[];
+        for(const node of nodes){
+            xList.push(node.maxX,node.minX);
+            yList.push(node.maxY,node.minY);
+        }
+        return {
+            id:"getBounds",
+            minX:Math.min(...xList),
+            maxX:Math.max(...xList),
+            minY:Math.min(...yList),
+            maxY:Math.max(...yList),
+        }
+    }
+
+    static getBoundsByPoints(points:Point[]):TreeNode{
+        const xList=[]
+        const yList=[];
+        for(const node of points){
+            xList.push(node.x);
+            yList.push(node.y);
+        }
+        return {
+            id:"getBounds",
+            minX:Math.min(...xList),
+            maxX:Math.max(...xList),
+            minY:Math.min(...yList),
+            maxY:Math.max(...yList),
+        }
     }
 
 }

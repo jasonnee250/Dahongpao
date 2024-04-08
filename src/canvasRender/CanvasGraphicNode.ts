@@ -49,29 +49,6 @@ export class CanvasGraphicNode extends GraphicNode{
         this.drawText(this.graphicContext);
     }
 
-    drawRect(ctx:CanvasRenderingContext2D){
-        ctx.fillStyle='#'+this.color.toString(16);
-        ctx.globalAlpha=this.alpha;
-        ctx.fillRect(this.x,this.y,this.w,this.h);
-        ctx.strokeStyle='#'+this.borderColor.toString(16);
-        ctx.lineWidth=this.borderWidth;
-        ctx.globalAlpha=this.borderAlpha;
-        ctx.strokeRect(this.x,this.y,this.w,this.h);
-    }
-
-    drawCircle(ctx:CanvasRenderingContext2D){
-        ctx.fillStyle='#'+this.color.toString(16);
-        ctx.globalAlpha=this.alpha;
-        ctx.beginPath();
-        ctx.ellipse(this.x+0.5*this.w,this.y+0.5*this.h,0.5*this.w,0.5*this.h,0,0,2*Math.PI,false);
-        ctx.fill();
-        ctx.strokeStyle='#'+this.borderColor.toString(16);
-        ctx.lineWidth=this.borderWidth;
-        ctx.globalAlpha=this.borderAlpha;
-        ctx.stroke();
-        ctx.closePath();
-    }
-
     drawText(ctx:CanvasRenderingContext2D){
         const textFill='#'+this.fontColor.toString(16);
         ctx.fillStyle=textFill==='#0'?'#000000':textFill;

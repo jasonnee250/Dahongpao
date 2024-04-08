@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {ExampleMainApp} from "@/canvasRender/example/ExampleMainApp.ts";
 import {ButtonGroup, ButtonProp} from "@/component/buttonGroup";
 import './index.css'
+import {FPSTip} from "@/component/fps/FPSTip.tsx";
 export const ExampleApp=()=>{
 
     const mainApp=new ExampleMainApp();
@@ -44,12 +45,16 @@ export const ExampleApp=()=>{
 
 
     return (
-        <div className="container">
-            <div className="edit-panel">
-                <ButtonGroup buttons={buttons}/>
-                <SimpleEditZone/>
+        <>
+            <div className="container">
+                <div className="edit-panel">
+                    <ButtonGroup buttons={buttons}/>
+                    <SimpleEditZone/>
+                </div>
+                <Canvas2dNormal gmlApp={mainApp.gmlApp}/>
             </div>
-            <Canvas2dNormal gmlApp={mainApp.gmlApp}/>
-        </div>
+            <FPSTip/>
+        </>
+
     );
 }

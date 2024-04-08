@@ -19,4 +19,5 @@ Triangle UserInterface x 300, y 300, w 120, h 30, text "用户界面", color 0x8
 View -- Model;
 DataInterface -poly-> Model;
 BusinessLogic <-line- UserInterface;
+Rect abc;
 
