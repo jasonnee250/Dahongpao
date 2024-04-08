@@ -7,7 +7,7 @@ import {
     GraphLineType,
     GraphLinkLine,
     IGraphicLine,
-    ILineLayout,
+    ILineLayout, Point,
     PolyLine,
     SimpleLine,
     TransformMatrix
@@ -146,6 +146,16 @@ export class CanvasGMLApp implements GMLApp {
         this.globalTransform=new TransformMatrix();
         this.globalTransform.a = window.devicePixelRatio;
         this.globalTransform.d = window.devicePixelRatio;
+    }
+
+
+    transfromToGlobal(point:Point):Point{
+        point.x = point.x * window.devicePixelRatio;
+        point.y = point.y * window.devicePixelRatio;
+        const {a, d, e, f} = this.globalTransform;
+        point.x = point.x / a - e / a;
+        point.y = point.y / d - f / d;
+        return point;
     }
 
 }

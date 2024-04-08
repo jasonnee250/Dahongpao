@@ -25,14 +25,9 @@ export class ExampleMainApp {
     }
 
     private getGlobalPoint(event: PointerEvent): Point {
-        const rect = this.gmlApp.canvas?.getBoundingClientRect()!;//document.getElementById(NORMAL_CANVAS_ID)!.getBoundingClientRect();
+        const rect = this.gmlApp.canvas?.getBoundingClientRect()!;
         const point = new Point(event.clientX - rect.x, event.clientY - rect.y);
-        point.x = point.x * window.devicePixelRatio;
-        point.y = point.y * window.devicePixelRatio;
-        const {a, d, e, f} = this.gmlApp.globalTransform;
-        point.x = point.x / a - e / a;
-        point.y = point.y / d - f / d;
-        return point;
+        return this.gmlApp.transfromToGlobal(point);
     }
 
     start(): void {
@@ -92,6 +87,22 @@ export class ExampleMainApp {
         }
     }
 
+    private getViewPortBounds(){
+        const rect = this.gmlApp.canvas?.getBoundingClientRect()!;
+        const point = new Point(rect.width,rect.height);
+        const start = this.gmlApp.transfromToGlobal(new Point(0, 0));
+        const globalPoint = this.gmlApp.transfromToGlobal(point);
+        const buffer=2;
+        const rectBounds: TreeNode = {
+            id: 'rect',
+            minX: start.x-buffer,
+            minY: start.y-buffer,
+            maxX: globalPoint.x+2*buffer,
+            maxY: globalPoint.y+2*buffer,
+        }
+        return rectBounds;
+    }
+
     onWheel = (event: WheelEvent) => {
         if (event.target === this.gmlApp.canvas) {
             event.preventDefault();
@@ -99,16 +110,46 @@ export class ExampleMainApp {
             return;
         }
         if (event.ctrlKey) {
+            //缩放
             const delta = Math.abs(event.deltaY) / 100;
             const scale = event.deltaY > 0 ? (1 - delta) : (1 + delta);
             this.gmlApp.scale(scale, scale);
-            this.redraw();
-            //缩放
-            return;
+        } else {
+            //平移
+            this.gmlApp.translation(-event.deltaX, -event.deltaY);
         }
-        //平移
-        this.gmlApp.translation(-event.deltaX, -event.deltaY);
-        this.redraw();
+        const ctx = this.gmlApp.canvas!.getContext("2d")!;
+
+        const rectBounds: TreeNode = this.getViewPortBounds();
+        const {a, b, c, d, e, f} = this.gmlApp.globalTransform;
+        ctx.setTransform(a, b, c, d, e, f);
+
+        ctx.clearRect(rectBounds.minX, rectBounds.minY, rectBounds.maxX - rectBounds.minX, rectBounds.maxY - rectBounds.minY);
+        const result = this.tree.search(rectBounds);
+
+        //整理需要重新绘制的对象
+        const graphicSet = new Set<IGraphicElement>();
+        for (const treeNode of result) {
+            const node = this.nodeMap.get(treeNode.id);
+            if (node) {
+                graphicSet.add(node);
+            }
+            const line = this.lineMap.get(treeNode.id);
+            if (line) {
+                graphicSet.add(line);
+            }
+        }
+        for (const lineId of this.relatedLinks) {
+            const line = this.lineMap.get(lineId);
+            if (line) {
+                graphicSet.add(line);
+            }
+        }
+        const graphicList = [...graphicSet];
+        graphicList.sort((a, b) => a.zIndex - b.zIndex);
+        for (const graphic of graphicList) {
+            graphic.draw();
+        }
     }
 
     onPointerDown = (event: PointerEvent) => {
