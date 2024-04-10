@@ -1,26 +1,29 @@
-[中文版本点这里](./README.CN.md)
-# Dahongpao (大红袍)
-> The name is inspired by a type of black tea from China: Dahongpao (Big Red Robe).
+[Click Here for English ReadMe](./README.en.md)
+# Dahongpao(大红袍)
 
-Dahongpao is a front-end rendering framework written in TypeScript, offering two different underlying rendering engines to choose from, namely Canvas2d and pixi.js.
-Dahongpao provides commonly used business graphics such as: Rect (rectangle), Ellipse (ellipse), Diamond (diamond), Parallelogram (parallelogram), Trapezoid (trapezoid), Triangle (triangle), etc.
-Additionally, Dahongpao offers two convenient ways to use it:
+> 名称灵感来源于中国的一种红茶：大红袍
 
-1. You can describe using Graphic Model Language (GML), which is a descriptive language for graphics defined by the author, more details can be found at [Graphic Model Language (GML)](https://github.com/jasonnee250/Dahongpao/blob/master/src/grammar/RMGL_Description.md).
-2. You can construct data representing nodes and connections, and directly call the Dahongpao rendering App for rendering.
+「大红袍」是一个使用Typescript写的前端渲染框架，提供了两套不同的底层渲染引擎可供选择，分别是Canvas2d和pixi.js；
+「大红袍」提供了常用的业务图形如：Rect(矩形)，Ellipse(椭圆)，Diamond(菱形)，Parallelogram(平行四边形)，Trapezoid(梯形)
+，Triangle（三角形）等；
+同时，「大红袍」提供了两种方便的调用方式：
+
+1. 可以使用Graphic Model Lanaguage(GML)进行描述，
+   GML为笔者定义的一种描述图形语言，更多可见[Graphic Model Language(GML)](https://github.com/jasonnee250/Dahongpao/blob/master/src/grammar/RMGL_Description.md);
+2. 可以构造表示节点和连线的数据，直接调用「大红袍」渲染App进行渲染；
 
 ## Quick Start
 ### Install with npm:
 ```
 npm install dahongpao
 ```
-Use Canvas2dNormal from Dahongpao by importing it:
+从「大红袍」中引入Canvas2dNormal进行使用；
 ```typescript
 import {Canvas2dNormal, CanvasGMLApp} from "dahongpao";
 ```
-Here is a specific example:
+具体案例如下：
 ```typescript jsx
-// Directly pass GML text
+//直接传入GML语言文本
 import {Canvas2dNormal, CanvasGMLApp} from "dahongpao";
 import "./index.css"
 function App() {
@@ -28,32 +31,32 @@ function App() {
    const gmlApp = new CanvasGMLApp();
 
    const draw = () => {
-      const text="// Define start node\n" +
-              "Rect start x 0, y 50, w 100, h 40, text \"Start\", color 0xFF0000;\n" +
+      const text="// 定义开始节点\n" +
+              "Rect start x 0, y 50, w 100, h 40, text \"开始\", color 0xFF0000;\n" +
               "\n" +
-              "// Define open login page node\n" +
-              "Rect openLoginPage x 150, y 50, w 180, h 40, text \"Open Login Page\", color 0x00FF00;\n" +
+              "// 定义打开登录页面节点\n" +
+              "Rect openLoginPage x 150, y 50, w 180, h 40, text \"打开登录页面\", color 0x00FF00;\n" +
               "\n" +
-              "// Define input username node\n" +
-              "Rect inputUsername x 400, y 50, w 180, h 40, text \"Input Username\", color 0xFF0000;\n" +
+              "// 定义输入用户名节点\n" +
+              "Rect inputUsername x 400, y 50, w 180, h 40, text \"输入用户名\", color 0xFF0000;\n" +
               "\n" +
-              "// Define input password node\n" +
-              "Rect inputPassword x 400, y 120, w 180, h 40, text \"Input Password\", color 0x990000;\n" +
+              "// 定义输入密码节点\n" +
+              "Rect inputPassword x 400, y 120, w 180, h 40, text \"输入密码\", color 0x990000;\n" +
               "\n" +
-              "// Define click login button node\n" +
-              "Rect clickLoginButton x 400, y 190, w 180, h 40, text \"Click Login Button\", color 0xFFA500;\n" +
+              "// 定义点击登录按钮节点\n" +
+              "Rect clickLoginButton x 400, y 190, w 180, h 40, text \"点击登录按钮\", color 0xFFA500;\n" +
               "\n" +
-              "// Define verify user information node\n" +
-              "Rect verifyInfo x 650, y 50, w 180, h 40, text \"Verify User Information\", color 0x008000;\n" +
+              "// 定义验证用户信息节点\n" +
+              "Rect verifyInfo x 650, y 50, w 180, h 40, text \"验证用户信息\", color 0x008000;\n" +
               "\n" +
-              "// Define login success node\n" +
-              "Rect loginSuccess x 900, y 50, w 180, h 40, text \"Login Success\", color 0x00FF00;\n" +
+              "// 定义登录成功节点\n" +
+              "Rect loginSuccess x 900, y 50, w 180, h 40, text \"登录成功\", color 0x00FF00;\n" +
               "\n" +
-              "// Define login failed node\n" +
-              "Rect loginFailed x 900, y 120, w 180, h 40, text \"Login Failed\", color 0xFF0000;\n" +
+              "// 定义登录失败节点\n" +
+              "Rect loginFailed x 900, y 120, w 180, h 40, text \"登录失败\", color 0xFF0000;\n" +
               "\n" +
-              "// Define retry node\n" +
-              "Rect retry x 650, y 190, w 180, h 40, text \"Retry\", color 0xFFC300;\n" +
+              "// 定义返回重试节点\n" +
+              "Rect retry x 650, y 190, w 180, h 40, text \"返回重试\", color 0xFFC300;\n" +
               "\n" +
               "start --> openLoginPage;\n" +
               "openLoginPage --> inputUsername;\n" +
@@ -83,10 +86,10 @@ function App() {
 }
 export default App
 ```
-The production example image is as follows:
+生产示例图如下：
 ![img.png](assets/case.png)
 
-Dahongpao also provides a packaged ExampleApp, which includes simple interactions such as dragging; it can be used directly for export, as follows:
+「大红袍」也提供了封装好的ExampleApp，包含了简单的交互，如拖动；可以直接导出使用，如下;
 ```typescript jsx
 import {ExampleApp} from "dahongpao";
 function App() {
@@ -98,27 +101,27 @@ function App() {
 }
 export default App
 ```
-[click here to try](https://codesandbox.io/p/live/695b02c2-6294-40fe-9e33-4692248934af)
-## Related Explanation
+[点击这里进行尝试](https://stackblitz.com/edit/vitejs-vite-kkvszj?file=src%2FApp.tsx)
+## 相关说明
 
-GML language parsing is supported by [antlr4](https://github.com/antlr/antlr4);
-Currently, it supports two underlying rendering engines, canvas2d and pixi.js, for users to switch between;
-Use CanvasGMLApp for canvas2d rendering; use PixiGMLApp for pixi.js rendering;
-The draw method is provided for parsing GML language and drawing;
+GML语言解析由[antlr4](https://github.com/antlr/antlr4)提供支持；
+目前支持了canvas2d和pixi.js两种底层渲染引擎，可供用户切换使用；  
+使用canvas2d渲染可以使用CanvasGMLApp;pixi.js渲染可以使用PixiGMLApp;  
+提供draw方法用于解析GML语言并绘制;
 
 ```typescript
 export interface GMLApp {
     draw(text: string): void;
 }
 
-// Rendering with canvas2d
+//使用canvas2d进行渲染
 class CanvasGMLApp implements GMLApp {
     draw(text: string): void {
         //...
     }
 };
 
-// Rendering with pixi.js
+//使用pixi.js进行渲染
 class PixiGMLApp implements GMLApp {
     draw(text: string): void {
         //...
@@ -126,7 +129,7 @@ class PixiGMLApp implements GMLApp {
 };
 ```
 
-An example of using pixi.js for rendering is as follows:
+如下所示为使用pixi.js渲染的案例：
 
 ```javascript
 import {SimpleEditZone} from "@/component/editZone/SimpleEditZone.tsx";
@@ -145,7 +148,7 @@ export const ExampleApp = () => {
 }
 ```
 
-An example of using canvas2d for rendering is as follows:
+下面为使用canvas2d渲染的案例：
 
 ```javascript
 import {CanvasGMLApp} from "@/canvasRender/CanvasGMLApp.ts";
@@ -165,41 +168,94 @@ export const ExampleApp = () => {
 }
 ```
 
-## Here are some GML definitions and their actual effects
+## 这里举例部分GML的定义及其实际效果
 
-A simple description can be represented as follows:
+一个简单的描述可以表示如下：
 
 ```java
 Rect a x 0,y 0,w 100,h 50,angle 0,color 0xCCCCCC,text "hello world",alpha 1,borderWidth 2,borderColor 0x000000,borderAlpha 1;
 ```
 
-Rect a represents creating a rectangle a;
-x 0 represents the x-coordinate of the shape is 0;
-y 0 represents the y-coordinate of the shape is 0;
-w 100 represents the width of the shape is 100;
-h 50 represents the height of the shape is 50;
-angle 0 represents the rotation angle of the shape is 0;
-color 0xCCCCCC represents the fill color of the shape is 0xCCCCCC;
-text "hello world" represents the text inside the shape is "hello world";
-alpha 1 represents the fill opacity of the shape is 1;
-borderWidth represents the stroke width of the shape is 1;
-borderColor represents the stroke color of the shape is 0x000000;
-borderAlpha represents the stroke opacity of the shape is 1;
+Rect a 代表常见了一个矩形a；  
+x 0 代表图形x坐标为0；  
+y 0 代表图形y坐标为0；  
+w 100代表图形宽度为100；  
+h 50代表图形高度为50；   
+angle 0代表图形旋转角度为0；   
+color 0xCCCCCC代表图形填充颜色为0xCCCCCC；  
+text "hello world" 代表图形内部文字为"hello world"；  
+alpha 1代表图形填充透明度为1；  
+borderWidth代表图形描边宽度为1；  
+borderColor代表图形描边颜色为0x000000；  
+borderAlpha代表图形描边透明度为1；
 
-### 1.1.2. Omitted Description
+### 1.1.2.省略描述
 
-The above graphic attributes can be omitted. If the attributes are omitted, they will default to their default values. The omitted description is as follows:
+以上图形属性可以省略，属性省略的话会默认属性为缺省值，省略描述如下：
 
 ```java
 Rect a x 0,y 0,w 100,h 50,color 0xCCCCCC;
 ```
 
-### 1.1.3. Describing Multiple Graphics at Once
+### 1.1.3.同时描述多个图形
 
-Multiple graphics can be described at the same time, as follows:
+可以对多个图形同时描述，如下：
 
 ```java
 Rect a,b,c x 0,y 0,w 100,h 50,color 0xCCCCCC;
 ```
 
-The above description represents the creation of three rectangles, with position coordinates both at (0,0), width 100
+上述描述表示创建了三个矩形，位置坐标都是(0,0),宽度为100，高度为50，颜色为0xCCCCCC;
+
+## 实际效果举例
+
+下面GML语言定义了五个实体：
+
+```text
+// 定义ViewModel
+Rect ViewModel x 300, y 200, w 120, h 50, text "ViewModel", color 0x6495ED, borderWidth 2;
+
+// 定义View
+Circle View x 500, y 100, w 100, h 40, text "View", color 0xFFD700, borderWidth 1;
+
+// 定义Model
+Rect Model x 100, y 100, w 100, h 40, text "Model", color 0x90EE90, borderWidth 1;
+
+// 定义数据接口
+Rect DataInterface x 100, y 200, w 120, h 30, text "数据接口", color 0x20B2AA, borderWidth 1;
+
+// 定义业务逻辑
+Rect BusinessLogic x 300, y 100, w 120, h 30, text "业务逻辑", color 0xCD853F, borderWidth 1;
+
+// 定义用户界面
+Rect UserInterface x 300, y 300, w 120, h 30, text "用户界面", color 0x800080, borderWidth 1;
+```
+
+渲染出来的效果图：  
+![img.png](assets/img.png)
+
+## Contributors
+* JasonNee(danileo250@163.com)
+
+## License
+MIT License
+
+Copyright (c) 2023 JasonNee
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
